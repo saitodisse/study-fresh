@@ -20,7 +20,7 @@ export default function Page(props: PageProps) {
           height="128"
           alt="the Fresh logo: a sliced lemon dripping with juice"
         />
-        <h1 class="text-4xl font-bold">Welcome to {props.url.href}</h1>
+        <h1 class="text-2xl font-bold">{props.url.href}</h1>
       </div>
     </div>
   );

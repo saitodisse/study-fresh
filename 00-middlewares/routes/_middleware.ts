@@ -1,7 +1,9 @@
 import { FreshContext } from "$fresh/server.ts";
 
 export async function handler(req: Request, ctx: FreshContext) {
-  console.log(`[0](_middleware) ${req.method} [${ctx.destination}]: ${req.url} (counter: ${ctx.state.counter})`);
+  console.log(
+    `[0](_middleware) ${req.method} [${ctx.destination}]: ${req.url} (counter: ${ctx.state.counter})`,
+  );
 
   // if (ctx.destination === 'route') {
   //   console.log("(middleware) req", req);
@@ -9,7 +11,7 @@ export async function handler(req: Request, ctx: FreshContext) {
   // }
 
   // print new line to split calls
-  if (req.url.indexOf('styles.css') !== -1) {
+  if (req.url.indexOf("styles.css") !== -1) {
     console.log("\n");
   }
 
