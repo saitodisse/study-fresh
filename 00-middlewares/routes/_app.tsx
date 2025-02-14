@@ -27,7 +27,14 @@ export default function App(props: PageProps) {
             href="/redirect-to-level-1/"
             title='redirect to "/level1"'
           >
-            redirect
+            redirect 1
+          </a>
+          <a
+            className="mx-2"
+            href="/redirect-to-level-2/"
+            title='redirect to "/level1/level2"'
+          >
+            redirect 2
           </a>
         </div>
 
@@ -41,6 +48,15 @@ export default function App(props: PageProps) {
               alt="the Fresh logo: a sliced lemon dripping with juice"
             />
             <props.Component />
+
+            <p>
+              - desabilite o cache do navegador para ver o efeito dos
+              middlewares de redirect
+            </p>
+            <p>
+              - veja o log do terminal para ver a sequencia de execução dos
+              middlewares
+            </p>
           </div>
         </div>
       </body>

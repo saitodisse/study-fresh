@@ -12,6 +12,8 @@ import * as $level1_level2_middleware from "./routes/level1/level2/_middleware.t
 import * as $level1_level2_index from "./routes/level1/level2/index.tsx";
 import * as $redirect_to_level_1_middleware from "./routes/redirect-to-level-1/_middleware.ts";
 import * as $redirect_to_level_1_index from "./routes/redirect-to-level-1/index.tsx";
+import * as $redirect_to_level_2_middleware from "./routes/redirect-to-level-2/_middleware.ts";
+import * as $redirect_to_level_2_index from "./routes/redirect-to-level-2/index.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -28,6 +30,9 @@ const manifest = {
     "./routes/redirect-to-level-1/_middleware.ts":
       $redirect_to_level_1_middleware,
     "./routes/redirect-to-level-1/index.tsx": $redirect_to_level_1_index,
+    "./routes/redirect-to-level-2/_middleware.ts":
+      $redirect_to_level_2_middleware,
+    "./routes/redirect-to-level-2/index.tsx": $redirect_to_level_2_index,
   },
   islands: {
     "./islands/Counter.tsx": $Counter,
