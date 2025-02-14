@@ -13,9 +13,22 @@ export default function App(props: PageProps) {
       </head>
       <body>
         <div className="my-4">
-          <a className="mx-2" href="/">level 0</a>
-          <a className="mx-2" href="/level1/">level 1</a>
-          <a className="mx-2" href="/level1/level2/">level 2</a>
+          <a className="mx-2" href="/">
+            level 0
+          </a>
+          <a className="mx-2" href="/level1/">
+            level 1
+          </a>
+          <a className="mx-2" href="/level1/level2/">
+            level 2
+          </a>
+          <a
+            className="mx-2"
+            href="/redirect-to-level-1/"
+            title='redirect to "/level1"'
+          >
+            redirect
+          </a>
         </div>
 
         <div class="px-4 py-8 mx-auto bg-[#86efac]">
