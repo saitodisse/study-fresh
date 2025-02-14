@@ -1,4 +1,6 @@
 import { type PageProps } from "$fresh/server.ts";
+import HeaderMenu from "../components/HeaderMenu.tsx";
+
 export default function App({ Component }: PageProps) {
   return (
     <html className="dark">
@@ -8,7 +10,8 @@ export default function App({ Component }: PageProps) {
         <title>01-auth</title>
         <link rel="stylesheet" href="/styles.css" />
       </head>
-      <body>
+      <body className="dark:bg-gray-800 dark:text-white">
+        <HeaderMenu />
         <Component />
       </body>
     </html>
