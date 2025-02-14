@@ -55,8 +55,8 @@ autenticação em Fresh. Adapte e aprofunde-se conforme necessário!
 - [x] Criar projeto Fresh: `deno run -A -r https://fresh.deno.dev my-auth-app`
 - [x] Remover arquivos:
       `rm -rf islands/Counter.tsx routes/api/joke.ts routes/\[name\].tsx`
-- [ ] Atualizar `import_map.json`: Adicionar `std/` (>= 0.160.0).
-- [ ] Atualizar `index.tsx`: Exibir status login (usar `getCookies`).
+- [x] Atualizar `import_map.json`: Adicionar `std/` (>= 0.160.0).
+- [x] Atualizar `index.tsx`: Exibir status login (usar `getCookies`).
 
 ## Parte 2: Login
 
