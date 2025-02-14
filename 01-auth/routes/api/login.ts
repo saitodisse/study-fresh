@@ -49,9 +49,19 @@ export const handler: Handlers = {
         headers,
       });
     } else {
+      // Cria um novo objeto Headers para a resposta
+      const headers = new Headers();
+
+      const message =
+        "Credenciais inválidas. Favor tentar novamente com usuário 'deno' e senha 'land'.";
+
+      // Define o cabeçalho de redirecionamento para a página inicial
+      headers.set("location", `/?message=${encodeURIComponent(message)}`);
+
       // Retorna uma resposta com status 403 (Forbidden) se as credenciais estiverem incorretas
       return new Response(null, {
-        status: 403,
+        status: 303,
+        headers,
       });
     }
   },

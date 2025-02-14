@@ -1,5 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { getCookies } from "$std/http/cookie.ts";
+import { Login } from "../components/Login.tsx";
 
 interface Data {
   isAllowed: boolean;
@@ -12,7 +13,10 @@ export const handler: Handlers = {
   },
 };
 
-export default function Home({ data }: PageProps<Data>) {
+export default function Home({ data, url }: PageProps<Data>) {
+  const urlComponent = new URL(url);
+  const queryMessage = urlComponent.searchParams.get("message")!;
+
   return (
     <div class="px-4 py-8 mx-auto">
       <div class="max-w-screen-md mx-auto flex flex-col">
@@ -22,6 +26,9 @@ export default function Home({ data }: PageProps<Data>) {
             ? "Você está autenticado!"
             : "Você não está autenticado!"}
         </p>
+        {queryMessage && <p class="mt-4 text-red-500">{queryMessage}</p>}
+
+        {!data.isAllowed ? <Login /> : <a href="/api/logout">Logout</a>}
 
         <h1 class="mt-8 mb-4 text-2xl font-bold">Documentação</h1>
         <ul class="space-y-4">
@@ -52,15 +59,5 @@ export default function Home({ data }: PageProps<Data>) {
         </ul>
       </div>
     </div>
-  );
-}
-
-function Login() {
-  return (
-    <form method="post" action="/api/login">
-      <input type="text" name="username" />
-      <input type="password" name="password" />
-      <button type="submit">Submit</button>
-    </form>
   );
 }
