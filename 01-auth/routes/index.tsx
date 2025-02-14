@@ -2,11 +2,32 @@ export default function Home() {
   return (
     <div class="px-4 py-8 mx-auto">
       <div class="max-w-screen-md mx-auto flex flex-col">
-        <p class="my-4">
-          <a href="/docs/01-understanding-auth" className="underline">
-            Autenticação vs Autorização
-          </a>
-        </p>
+        <ul class="space-y-4">
+          <li>
+            <a
+              href="/docs/01-understanding-auth"
+              className="underline hover:text-gray-300"
+            >
+              Autenticação vs Autorização
+            </a>
+          </li>
+          <li>
+            <a
+              href="/docs/02-sessions"
+              className="underline hover:text-gray-300"
+            >
+              Sessões
+            </a>
+          </li>
+          <li>
+            <a
+              href="/docs/03-cookies"
+              className="underline hover:text-gray-300"
+            >
+              Cookies
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   );

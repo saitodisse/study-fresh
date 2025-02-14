@@ -6,6 +6,8 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $docs_01_understanding_auth from "./routes/docs/01-understanding-auth.tsx";
+import * as $docs_02_sessions from "./routes/docs/02-sessions.tsx";
+import * as $docs_03_cookies from "./routes/docs/03-cookies.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import type { Manifest } from "$fresh/server.ts";
@@ -16,6 +18,8 @@ const manifest = {
     "./routes/_app.tsx": $_app,
     "./routes/api/joke.ts": $api_joke,
     "./routes/docs/01-understanding-auth.tsx": $docs_01_understanding_auth,
+    "./routes/docs/02-sessions.tsx": $docs_02_sessions,
+    "./routes/docs/03-cookies.tsx": $docs_03_cookies,
     "./routes/index.tsx": $index,
   },
   islands: {
