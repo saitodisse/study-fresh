@@ -16,6 +16,7 @@ export const handler: Handlers = {
 export default function Home({ data, url }: PageProps<Data>) {
   const urlComponent = new URL(url);
   const queryMessage = urlComponent.searchParams.get("message")!;
+  const password_hash = urlComponent.searchParams.get("password_hash")!;
 
   return (
     <div class="px-4 py-8 mx-auto">
@@ -27,6 +28,14 @@ export default function Home({ data, url }: PageProps<Data>) {
             : "Você não está autenticado!"}
         </p>
         {queryMessage && <p class="mt-4 text-red-500">{queryMessage}</p>}
+        {password_hash && (
+          <p class="mt-4 text-green-500">
+            Hash da senha: {password_hash}
+          </p>
+        )}
+
+        {/* $2a$10$iOQqhNRw8SUhKeXXInNhi.NRTdMVGSfOuvUB58OPVpqUu1Rf9BeYS */}
+        {/* $2a$10$3p5Jo2zRdE7avFx/MX2qjuXt9UL5HrpvmlrNyAVA1P4CQwdwXu01 */}
 
         {!data.isAllowed ? <Login /> : <a href="/api/logout">Logout</a>}
 

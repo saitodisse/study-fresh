@@ -18,6 +18,8 @@ import { Handlers } from "$fresh/server.ts";
 // Importa a função setCookie do módulo padrão HTTP cookie
 import { setCookie } from "$std/http/cookie.ts";
 
+import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
+
 // Define o objeto handler que implementa a interface Handlers
 export const handler: Handlers = {
   // Define o método POST assíncrono que recebe um objeto Request
@@ -26,6 +28,28 @@ export const handler: Handlers = {
     const url = new URL(req.url);
     // Obtém os dados do formulário da requisição
     const form = await req.formData();
+
+    if (!form.get("password")) {
+      // Cria um novo objeto Headers para a resposta
+      const headers = new Headers();
+
+      const message = "Senha inválida. Favor tentar novamente.";
+
+      // Define o cabeçalho de redirecionamento para a página inicial
+      headers.set("location", `/?message=${encodeURIComponent(message)}`);
+
+      // Retorna uma resposta com status 403 (Forbidden) se a senha estiver incorreta
+      return new Response(null, {
+        status: 303,
+        headers,
+      });
+    }
+
+    // Exemplo de hash armazenado (em produção, isto viria de um banco de dados)
+    const password_hash = await bcrypt.hash(
+      form.get("password") as string,
+    );
+
     // Verifica se o usuário e senha correspondem aos valores hardcoded
     if (form.get("username") === "deno" && form.get("password") === "land") {
       // Cria um novo objeto Headers para a resposta
@@ -42,7 +66,10 @@ export const handler: Handlers = {
       });
 
       // Define o cabeçalho de redirecionamento para a página inicial
-      headers.set("location", "/");
+      headers.set(
+        "location",
+        "/?password_hash=" + encodeURIComponent(password_hash),
+      );
       // Retorna uma resposta vazia com status 303 (See Other) e os cabeçalhos configurados
       return new Response(null, {
         status: 303,

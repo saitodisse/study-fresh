@@ -11,7 +11,7 @@
 
 ### Tópico 2: Sessões e Rotas de Autenticação
 
-- [ ] **Cookies de Sessão:** Aprender e implementar `setSessionCookie` e
+- [x] **Cookies de Sessão:** Aprender e implementar `setSessionCookie` e
       `getSession` em Fresh, incluindo segurança de cookies. (Recursos:
       Documentação Fresh, exemplos de cookies em Fresh).
 - [ ] **Rota de Login:** Criar rota `/auth/login` com formulário e lógica de
@@ -60,32 +60,33 @@ autenticação em Fresh. Adapte e aprofunde-se conforme necessário!
 
 ## Parte 2: Login
 
-- [ ] Criar `<Login>` em `index.tsx`: Formulário POST para `/api/login`
+- [x] Criar `<Login>` em `index.tsx`: Formulário POST para `/api/login`
       (username/password).
 
 ## Parte 3: Autenticação
 
-- [ ] `routes/api/login.ts`: Função POST (verificar credenciais, definir cookie
+- [x] `routes/api/login.ts`: Função POST (verificar credenciais, definir cookie
       "auth", redirecionar).
-- [ ] `routes/logout.ts`: Função GET (remover cookie "auth", redirecionar).
+- [x] `routes/logout.ts`: Função GET (remover cookie "auth", redirecionar).
 
 ## Parte 4: Integração
 
-- [ ] `index.tsx`: Adicionar `<Login>`/logout (condicional ao status login).
-- [ ] Testar: Fluxo login/logout, status, cookie.
+- [x] `index.tsx`: Adicionar `<Login>`/logout (condicional ao status login).
+- [x] Testar: Fluxo login/logout, status, cookie.
 
 ## Parte 5: Opcional
 
-- [ ] Redirecionar não logados (`index.tsx` GET).
-- [ ] Conteúdo condicional (`index.tsx`).
-- [ ] Autenticação robusta (banco de dados, HTTPS, etc.).
+- [x] Redirecionar não logados (`index.tsx` GET).
+- [x] Conteúdo condicional (`index.tsx`).
 
 ---
 
+- [ ] Autenticação robusta (banco de dados, HTTPS, etc.).
+
 ## Sugestões de melhoria
 
-saitodisse: o que poderia ser melhorado para deixar o login um pouco mais
-seguro, pronto para produção. Responda em pt-br
+"o que poderia ser melhorado para deixar o login um pouco mais seguro, pronto
+para produção. Responda em pt-br"
 
 GitHub Copilot: # Sugestões de Melhorias de Segurança para o Login
 

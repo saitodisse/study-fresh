@@ -1,6 +1,6 @@
 export function Login() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+    <div className="flex items-center justify-center bg-gray-900 p-8">
       <form
         method="post"
         action="/api/login"
