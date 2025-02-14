@@ -4,7 +4,7 @@ export default function HeaderMenu() {
       <nav className="container mx-auto px-4 py-3">
         <ul className="flex space-x-6 justify-between">
           <li>
-            <a href="/" className="text-white hover:text-gray-300">Indice</a>
+            <a href="/" className="text-white hover:text-gray-300">Índice</a>
           </li>
           <li>
             <a href="/login" className="text-white hover:text-gray-300">

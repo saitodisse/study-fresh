@@ -10,7 +10,7 @@ export default function App({ Component }: PageProps) {
         <title>01-auth</title>
         <link rel="stylesheet" href="/styles.css" />
       </head>
-      <body className="dark:bg-gray-800 dark:text-white">
+      <body className="dark:bg-gray-800 dark:text-slate-200">
         <HeaderMenu />
         <Component />
       </body>

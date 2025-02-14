@@ -1,18 +1,18 @@
 export default function Home() {
   return (
-    <div class="px-4 py-8 mx-auto bg-[#261342]">
+    <div class="px-4 py-8 mx-auto">
       <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-        <div className="flex flex-row space-x-2 items-center">
+        <div className="flex flex-row space-x-2 items-center justify-between w-full">
+          <h1 class="text-3xl font-bold">Autenticação vs Autorização</h1>
           <img
             class="my-6"
             src="/logo.svg"
-            width="64"
-            height="64"
+            width="32"
+            height="32"
             alt="the Fresh logo: a sliced lemon dripping with juice"
           />
-          <h1 class="text-3xl font-bold">01 - entendendo autenticação</h1>
         </div>
-        <div className="container mx-auto max-w-screen-md p-4 rounded-lg bg-[#442179]">
+        <div className="container mx-auto max-w-screen-md p-8 rounded-lg bg-[#161616] bg-opacity-50">
           <p class="my-4">
             <strong>Autenticação</strong>: A autenticação é o processo de
             verificar a identidade de um usuário. Em outras palavras, ela
