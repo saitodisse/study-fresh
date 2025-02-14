@@ -1,3 +1,5 @@
 # Estudo de Fresh
 
-- [ ] 00-middlewares
+- [x] 00-middlewares
+- [ ] 01-auth
+
