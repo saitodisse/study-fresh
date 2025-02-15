@@ -22,22 +22,23 @@ export default function Home({ data, url }: PageProps<Data>) {
     <div class="px-4 py-8 mx-auto">
       <div class="max-w-screen-md mx-auto flex flex-col">
         <h1 class="mt-8 text-2xl font-bold">Cookies</h1>
+
+        {queryMessage && <p class="mt-4 text-red-500">{queryMessage}</p>}
+
         <p class="mt-4">
           {data.isAllowed
             ? "Você está autenticado!"
             : "Você não está autenticado!"}
         </p>
-        {queryMessage && <p class="mt-4 text-red-500">{queryMessage}</p>}
-        {password_hash && (
-          <p class="mt-4 text-green-500">
-            Hash da senha: {password_hash}
-          </p>
-        )}
-
-        {/* $2a$10$iOQqhNRw8SUhKeXXInNhi.NRTdMVGSfOuvUB58OPVpqUu1Rf9BeYS */}
-        {/* $2a$10$3p5Jo2zRdE7avFx/MX2qjuXt9UL5HrpvmlrNyAVA1P4CQwdwXu01 */}
-
-        {!data.isAllowed ? <Login /> : <a href="/api/logout">Logout</a>}
+        {!data.isAllowed
+          ? (
+            <>
+              <a className="underline" href="/bcrypt/login">
+                Login (bcrypt + Deno KV)
+              </a>
+            </>
+          )
+          : <a href="/api/logout">Logout</a>}
 
         <h1 class="mt-8 mb-4 text-2xl font-bold">Documentação</h1>
         <ul class="space-y-4">

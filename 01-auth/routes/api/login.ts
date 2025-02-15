@@ -1,15 +1,19 @@
 /*
 
-All of the authentication logic for this endpoint will be contained in the custom handler function.
+Toda a lógica de autenticação para este endpoint estará contida na função manipuladora personalizada.
 
-For simplicity, our username and password will be hardcoded as “deno” and “land”. (In most production situations, you would use authentication strategies, tokens from persistent data storage, etc.)
+Por simplicidade, nosso nome de usuário e senha serão definidos diretamente no código como "deno" e "land".
+(Na maioria das situações de produção, você usaria estratégias de autenticação, tokens de armazenamento
+persistente de dados, etc.)
 
-When a POST request is made to /api/login, the custom handler function will perform the following:
+Quando uma requisição POST é feita para /api/login, a função manipuladora personalizada realizará o seguinte:
 
-pulls username and password from the req request parameter
-checks against our hardcoded username and password
-sets the auth cookie to bar (in production, this should be a unique value per session) with a maxAge of 120 (it will expire after 2 minutes)
-and returns the appropriate HTTP responses (HTTP 303 forces the method back to a GET, preventing weird browser history behavior)
+- extrai o nome de usuário e senha do parâmetro de requisição req
+- verifica se correspondem ao nome de usuário e senha definidos no código
+- define o cookie de autenticação como 'bar' (em produção, isto deveria ser um valor único por sessão)
+  com maxAge de 120 (expirará após 2 minutos)
+- retorna as respostas HTTP apropriadas (HTTP 303 força o método de volta para GET, prevenindo
+  comportamento estranho no histórico do navegador)
 
 */
 
@@ -30,7 +34,6 @@ export const handler: Handlers = {
     const form = await req.formData();
 
     if (!form.get("password")) {
-      // Cria um novo objeto Headers para a resposta
       const headers = new Headers();
 
       const message = "Senha inválida. Favor tentar novamente.";
@@ -52,7 +55,6 @@ export const handler: Handlers = {
 
     // Verifica se o usuário e senha correspondem aos valores hardcoded
     if (form.get("username") === "deno" && form.get("password") === "land") {
-      // Cria um novo objeto Headers para a resposta
       const headers = new Headers();
       // Configura o cookie de autenticação
       setCookie(headers, {
@@ -76,7 +78,6 @@ export const handler: Handlers = {
         headers,
       });
     } else {
-      // Cria um novo objeto Headers para a resposta
       const headers = new Headers();
 
       const message =
