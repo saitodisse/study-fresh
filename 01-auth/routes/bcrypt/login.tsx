@@ -4,6 +4,11 @@ import { setCookie } from "$std/http/cookie.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 import { User } from "../api/types/User.ts";
 
+type LoginPageProps = {
+  message?: string;
+  goto?: string;
+};
+
 export const handler: Handlers = {
   async POST(req, _ctx) {
     const form = await req.formData();
@@ -18,7 +23,7 @@ export const handler: Handlers = {
     if (!validHash) {
       const searchParams = new URLSearchParams();
       searchParams.set("message", "Usuário não encontrado!");
-      return new Response("", {
+      return new Response(null, {
         status: 307,
         headers: { Location: `/bcrypt/signin?${searchParams.toString()}` },
       });
@@ -29,16 +34,11 @@ export const handler: Handlers = {
     if (!isValid) {
       const searchParams = new URLSearchParams();
       searchParams.set("message", "Senha inválida!");
-      return new Response("", {
-        status: 307,
-        headers: { Location: `/?${searchParams.toString()}` },
-      });
+
+      return _ctx.render!({ message: "Senha inválida!" });
     }
 
-    const newHash = await bcrypt.hash(password);
-    const searchParams = new URLSearchParams();
-    searchParams.set("message", "Login realizado com sucesso!");
-
+    // Salva o cookie de autenticação
     const headers = new Headers();
     setCookie(headers, {
       name: "auth",
@@ -46,19 +46,33 @@ export const handler: Handlers = {
       path: "/",
       secure: true,
       sameSite: "Lax",
+      expires: new Date(Date.now() + 1000 * 5), // 5 segundos
+      // expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // 1 semana
     });
 
-    headers.set("location", `/?${searchParams.toString()}`);
-    return new Response("", {
-      status: 307,
+    // Define o cabeçalho de redirecionamento para a página inicial
+    headers.set("location", `/`);
+
+    return new Response(null, {
+      status: 302, // Código de redirecionamento
       headers,
     });
   },
 };
 
-export default function LoginPage(pageProps: PageProps) {
+export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
   const url = new URL(pageProps.url);
   const queryMessage = url.searchParams.get("message")!;
+
+  console.log("data", pageProps.data);
+  console.log("state", pageProps.state);
+
+  if (pageProps.data?.goto) {
+    return new Response(null, {
+      status: 307,
+      headers: { Location: pageProps.data.goto },
+    });
+  }
 
   return (
     <div class="px-4 py-8 mx-auto">
