@@ -32,11 +32,18 @@ export default function Home({ data, url }: PageProps<Data>) {
         </p>
         {!data.isAllowed
           ? (
-            <>
-              <a className="underline" href="/bcrypt/login">
-                Login (bcrypt + Deno KV)
-              </a>
-            </>
+            <div className="space-y-2">
+              <div>
+                <a className="underline" href="/bcrypt/login">
+                  Login (bcrypt + Deno KV)
+                </a>
+              </div>
+              <div>
+                <a className="underline" href="/bcrypt/signin">
+                  Criar conta (bcrypt + Deno KV)
+                </a>
+              </div>
+            </div>
           )
           : <a href="/api/logout">Logout</a>}
 
