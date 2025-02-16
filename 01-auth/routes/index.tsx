@@ -1,35 +1,49 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { getCookies } from "$std/http/cookie.ts";
-import { Login } from "../components/Login.tsx";
 
 interface Data {
   isAllowed: boolean;
+  session_value: string;
+  session_exp: string;
 }
 
 export const handler: Handlers = {
   GET(req, ctx) {
     const cookies = getCookies(req.headers);
-    return ctx.render!({ isAllowed: cookies.auth === "bar" });
+
+    console.log(cookies.auth);
+
+    return ctx.render!({
+      isAllowed: cookies.auth && cookies.auth !== "",
+      session_value: cookies.value,
+      session_exp: cookies.exp,
+    });
   },
 };
 
 export default function Home({ data, url }: PageProps<Data>) {
-  const urlComponent = new URL(url);
-  const queryMessage = urlComponent.searchParams.get("message")!;
-  const password_hash = urlComponent.searchParams.get("password_hash")!;
-
   return (
     <div class="px-4 py-8 mx-auto">
       <div class="max-w-screen-md mx-auto flex flex-col">
-        <h1 class="mt-8 text-2xl font-bold">Cookies</h1>
+        <h1 class="mt-8 text-2xl font-bold">Página Inicial</h1>
 
-        {queryMessage && <p class="mt-4 text-red-500">{queryMessage}</p>}
-
-        <p class="mt-4">
+        <p
+          class={"my-8" +
+            (data.isAllowed ? " text-green-500" : " text-red-500")}
+        >
           {data.isAllowed
             ? "Você está autenticado!"
             : "Você não está autenticado!"}
         </p>
+
+        {data.session_value && (
+          <p class="my-8">
+            value: {data.session_value}
+            <br />
+            exp: {data.session_exp}
+          </p>
+        )}
+
         {!data.isAllowed
           ? (
             <div className="space-y-2">
@@ -50,7 +64,7 @@ export default function Home({ data, url }: PageProps<Data>) {
               </div>
             </div>
           )
-          : <a href="/api/logout">Logout</a>}
+          : <a className="underline" href="/api/logout">Logout</a>}
 
         <h1 class="mt-8 mb-4 text-2xl font-bold">Documentação</h1>
         <ul class="space-y-4">

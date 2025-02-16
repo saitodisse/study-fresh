@@ -26,11 +26,10 @@ export const handler: Handlers = {
     const userResult = await kv.get<User>(["users", username]);
 
     if (userResult.value) {
-      const searchParams = new URLSearchParams();
-      const message =
-        "Usuário já cadastrado. Favor escolher outro username ou fazer login.";
-      searchParams.set("message", message);
-      return Response.redirect(`/signin?${searchParams.toString()}`);
+      return _ctx.render!({
+        message:
+          "Usuário já cadastrado. Favor escolher outro username ou fazer login.",
+      });
     }
 
     // Create new user
@@ -54,10 +53,11 @@ export const handler: Handlers = {
     const headers = new Headers();
     setCookie(headers, {
       name: "auth",
-      value: "bar",
+      value: Math.random().toString(36).slice(2),
       path: "/",
       secure: true,
       sameSite: "Lax",
+      expires: new Date(Date.now() + 1000 * 5), // 5 seconds
     });
 
     headers.set("location", "/");
@@ -69,7 +69,7 @@ export const handler: Handlers = {
 };
 
 export default function SigninPage(props: PageProps) {
-  const message = props.url.searchParams.get("message");
+  const message = props.data?.message;
 
   return (
     <div class="px-4 py-8 mx-auto">

@@ -14,6 +14,7 @@ import * as $docs_02_sessions from "./routes/docs/02-sessions.tsx";
 import * as $docs_03_cookies from "./routes/docs/03-cookies.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $users_all_users from "./routes/users/all-users.tsx";
+import * as $users_delete_username_ from "./routes/users/delete/[username].tsx";
 
 import type { Manifest } from "$fresh/server.ts";
 
@@ -31,6 +32,7 @@ const manifest = {
     "./routes/docs/03-cookies.tsx": $docs_03_cookies,
     "./routes/index.tsx": $index,
     "./routes/users/all-users.tsx": $users_all_users,
+    "./routes/users/delete/[username].tsx": $users_delete_username_,
   },
   islands: {},
   baseUrl: import.meta.url,

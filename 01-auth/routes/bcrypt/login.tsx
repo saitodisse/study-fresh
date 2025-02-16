@@ -21,20 +21,12 @@ export const handler: Handlers = {
     const validHash = userResult.value?.password;
 
     if (!validHash) {
-      const searchParams = new URLSearchParams();
-      searchParams.set("message", "Usuário não encontrado!");
-      return new Response(null, {
-        status: 307,
-        headers: { Location: `/bcrypt/signin?${searchParams.toString()}` },
-      });
+      return _ctx.render!({ message: "Usuário não encontrado!" });
     }
 
     const isValid = await bcrypt.compare(password, validHash);
 
     if (!isValid) {
-      const searchParams = new URLSearchParams();
-      searchParams.set("message", "Senha inválida!");
-
       return _ctx.render!({ message: "Senha inválida!" });
     }
 
@@ -42,7 +34,7 @@ export const handler: Handlers = {
     const headers = new Headers();
     setCookie(headers, {
       name: "auth",
-      value: "bar",
+      value: Math.random().toString(36).slice(2),
       path: "/",
       secure: true,
       sameSite: "Lax",
@@ -79,7 +71,9 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
       <div class="max-w-screen-md mx-auto flex flex-col">
         <h1 class="text-2xl font-bold">Login</h1>
 
-        {queryMessage && <p class="mt-4 text-red-500">{queryMessage}</p>}
+        {pageProps.data?.message && (
+          <p class="mt-4 text-red-500">{pageProps.data.message}</p>
+        )}
 
         <form class="mt-4" method="POST">
           <div>
