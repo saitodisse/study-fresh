@@ -12,11 +12,27 @@ type LoginPageProps = {
 export const handler: Handlers = {
   async POST(req, _ctx) {
     const form = await req.formData();
-    const username = form.get("username")?.toString() || "";
+    const usernameOrEmail = form.get("username")?.toString() || "";
     const password = form.get("password")?.toString() || "";
 
+    if (!usernameOrEmail || !password) {
+      return _ctx.render!({ message: "Usuário/Email e senha são obrigatórios!" });
+    }
+
     const kv = await Deno.openKv(Deno.env.get("KV_STORE")!);
-    const userResult = await kv.get<User>(["users", username]);
+    // Primeiro tenta buscar por username
+    let userResult = await kv.get<User>(["users", usernameOrEmail]);
+
+    // Se não encontrar, busca todos os usuários e procura pelo email
+    if (!userResult.value) {
+      const entries = kv.list<User>({ prefix: ["users"] });
+      for await (const entry of entries) {
+        if (entry.value.email === usernameOrEmail) {
+          userResult = entry;
+          break;
+        }
+      }
+    }
 
     const validHash = userResult.value?.password;
 
@@ -78,12 +94,13 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
         <form class="mt-4" method="POST">
           <div>
             <label class="block" htmlFor="username">
-              Usuário:
+              Usuário ou Email:
             </label>
             <input
               type="text"
               id="username"
               name="username"
+              placeholder="Digite seu usuário ou email"
               class="mt-2 px-3 py-2 border rounded bg-slate-700"
             />
           </div>

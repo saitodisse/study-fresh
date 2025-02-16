@@ -13,11 +13,12 @@ export const handler: Handlers = {
   async POST(req, _ctx) {
     const form = await req.formData();
     const username = form.get("username")?.toString() || "";
+    const email = form.get("email")?.toString() || "";
     const password = form.get("password")?.toString() || "";
 
-    if (!username || !password) {
+    if (!username || !email || !password) {
       const searchParams = new URLSearchParams();
-      searchParams.set("message", "Usuário e senha são obrigatórios!");
+      searchParams.set("message", "Usuário, email e senha são obrigatórios!");
       return Response.redirect(`/signin?${searchParams.toString()}`);
     }
 
@@ -36,6 +37,7 @@ export const handler: Handlers = {
     const passwordHash = await bcrypt.hash(password);
     const user: User = {
       username,
+      email,
       password: passwordHash,
       createdAt: new Date(),
     };
@@ -78,11 +80,21 @@ export default function SigninPage(props: PageProps) {
         {message && <p class="mt-4 text-red-500">{message}</p>}
         <form class="mt-4" method="POST">
           <div class="mb-4">
-            <label class="block" htmlFor="email">Usuário:</label>
+            <label class="block" htmlFor="username">Usuário:</label>
             <input
-              type="username"
+              type="text"
               id="username"
               name="username"
+              class="mt-2 px-3 py-2 border rounded w-full bg-gray-800 text-white border-gray-600 focus:border-gray-500 focus:ring-gray-500"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label class="block" htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
               class="mt-2 px-3 py-2 border rounded w-full bg-gray-800 text-white border-gray-600 focus:border-gray-500 focus:ring-gray-500"
               required
             />
