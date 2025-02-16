@@ -1,4 +1,4 @@
-import { SmtpClient } from "https://deno.land/x/smtp@v0.7.0/mod.ts";
+import { SmtpClient } from "https://deno.land/x/smtp/mod.ts";
 
 interface EmailConfig {
   to: string;
@@ -7,6 +7,8 @@ interface EmailConfig {
 }
 
 export async function sendEmail({ to, subject, html }: EmailConfig) {
+  console.log(`Sending email from ${Deno.env.get("GCP_EMAIL")!} to ${to}`);
+
   const client = new SmtpClient();
 
   await client.connectTLS({

@@ -24,6 +24,7 @@ export const handler: Handlers = {
 
     // 1. Check if user exists
     const userResult = await kv.get<User>(["users", username]);
+
     if (!userResult.value) {
       // Return same message even if user doesn't exist (security best practice)
       return _ctx.render!({
@@ -56,7 +57,7 @@ export const handler: Handlers = {
     const resetLink = `${req.url}/reset/${token}`;
     try {
       await sendEmail({
-        to: username, // Assumindo que o username é um email
+        to: userResult.value?.email, // Assumindo que o username é um email
         subject: "Recuperação de Senha",
         html: `
           <h1>Recuperação de Senha</h1>
