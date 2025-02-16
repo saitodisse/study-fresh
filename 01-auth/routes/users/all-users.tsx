@@ -75,9 +75,27 @@ export default function CheckAllKeys({ data }: PageProps<Data>) {
     <div class="p-4 bg-gray-900 text-white min-h-screen">
       <h1 class="text-2xl font-bold mb-4 text-white">Usuários Cadastrados</h1>
 
-      <form method="POST" class="mb-8 p-4 bg-gray-800 rounded">
+      <ul class="space-y-2">
+        {users.map((user) => (
+          <li key={user.username} class="flex items-center">
+            <span class="mr-4">{user.username}</span>
+            <a
+              href={`/users/delete/${user.username}`}
+              class="bg-red-600 text-white px-2 py-1 rounded text-sm hover:bg-red-700"
+            >
+              Excluir
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      {users.length === 0 && (
+        <p class="text-gray-500 mt-4">Nenhum usuário cadastrado ainda.</p>
+      )}
+
+      <form method="POST" class="mt-8 mb-8 p-4 bg-gray-800 rounded max-w-md">
         <h2 class="text-lg font-semibold mb-4 text-white">Verificar Senha</h2>
-        <div class="flex gap-4 items-end">
+        <div class="flex flex-wrap gap-4 items-end">
           <div>
             <label class="block text-sm mb-1">Username</label>
             <input
@@ -115,24 +133,6 @@ export default function CheckAllKeys({ data }: PageProps<Data>) {
           </div>
         )}
       </form>
-
-      <ul class="space-y-2">
-        {users.map((user) => (
-          <li key={user.username} class="flex items-center">
-            <span class="mr-4">{user.username}</span>
-            <a
-              href={`/users/delete/${user.username}`}
-              class="bg-red-600 text-white px-2 py-1 rounded text-sm hover:bg-red-700"
-            >
-              Excluir
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      {users.length === 0 && (
-        <p class="text-gray-500 mt-4">Nenhum usuário cadastrado ainda.</p>
-      )}
     </div>
   );
 }

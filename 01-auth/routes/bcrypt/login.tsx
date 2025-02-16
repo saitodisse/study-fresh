@@ -77,7 +77,9 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
 
         <form class="mt-4" method="POST">
           <div>
-            <label class="block" htmlFor="username">Usuário:</label>
+            <label class="block" htmlFor="username">
+              Usuário:
+            </label>
             <input
               type="text"
               id="username"
@@ -86,7 +88,9 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
             />
           </div>
           <div class="mt-4">
-            <label class="block" htmlFor="password">Senha:</label>
+            <label class="block" htmlFor="password">
+              Senha:
+            </label>
             <input
               type="password"
               id="password"
@@ -101,6 +105,22 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
             Entrar
           </button>
         </form>
+
+        <div class="mt-4 flex justify-between">
+          <a
+            href="/bcrypt/forgot-password"
+            class="text-blue-500 hover:underline"
+          >
+            Esqueceu sua senha?
+          </a>
+          <a href="/bcrypt/signin" class="text-blue-500 hover:underline">
+            Criar nova conta
+          </a>
+        </div>
+
+        <div id="loading" class="hidden mt-4 text-center">
+          Autenticando...
+        </div>
       </div>
     </div>
   );
