@@ -27,8 +27,18 @@ export default function CheckAllKeys({ data }: PageProps<Data>) {
     <div class="p-4">
       <h1 class="text-2xl font-bold mb-4">Usuários Cadastrados</h1>
 
-      <ul>
-        {users.map((user) => <li key={user.username}>{user.username}</li>)}
+      <ul class="space-y-2">
+        {users.map((user) => (
+          <li key={user.username} class="flex items-center">
+            <span class="mr-4">{user.username}</span>
+            <a
+              href={`/users/delete/${user.username}`}
+              class="bg-red-500 text-white px-2 py-1 rounded text-sm hover:bg-red-600"
+            >
+              Excluir
+            </a>
+          </li>
+        ))}
       </ul>
 
       {users.length === 0 && (
