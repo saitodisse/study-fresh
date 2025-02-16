@@ -13,6 +13,7 @@ import * as $docs_01_understanding_auth from "./routes/docs/01-understanding-aut
 import * as $docs_02_sessions from "./routes/docs/02-sessions.tsx";
 import * as $docs_03_cookies from "./routes/docs/03-cookies.tsx";
 import * as $index from "./routes/index.tsx";
+import * as $users_all_users from "./routes/users/all-users.tsx";
 
 import type { Manifest } from "$fresh/server.ts";
 
@@ -29,6 +30,7 @@ const manifest = {
     "./routes/docs/02-sessions.tsx": $docs_02_sessions,
     "./routes/docs/03-cookies.tsx": $docs_03_cookies,
     "./routes/index.tsx": $index,
+    "./routes/users/all-users.tsx": $users_all_users,
   },
   islands: {},
   baseUrl: import.meta.url,

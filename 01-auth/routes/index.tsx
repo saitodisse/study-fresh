@@ -43,6 +43,11 @@ export default function Home({ data, url }: PageProps<Data>) {
                   Criar conta (bcrypt + Deno KV)
                 </a>
               </div>
+              <div>
+                <a className="underline" href="/users/all-users">
+                  Listar usuários
+                </a>
+              </div>
             </div>
           )
           : <a href="/api/logout">Logout</a>}
