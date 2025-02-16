@@ -29,14 +29,14 @@ export const handler: Handlers<Data> = {
     const password = form.get("password")?.toString();
 
     if (!username || !password) {
-      return ctx.render({ 
-        users: [], 
-        message: "Username e senha são obrigatórios" 
+      return ctx.render({
+        users: [],
+        message: "Username e senha são obrigatórios",
       });
     }
 
     const kv = await Deno.openKv();
-    
+
     // Busca o usuário
     const userResult = await kv.get<User>(["users", username]);
     const users: User[] = [];
@@ -47,11 +47,11 @@ export const handler: Handlers<Data> = {
 
     if (!userResult.value) {
       await kv.close();
-      return ctx.render({ 
+      return ctx.render({
         users,
         message: "Usuário não encontrado",
         checkedUser: username,
-        isPasswordCorrect: false
+        isPasswordCorrect: false,
       });
     }
 
@@ -59,13 +59,13 @@ export const handler: Handlers<Data> = {
     const isValid = await bcrypt.compare(password, userResult.value.password);
     await kv.close();
 
-    return ctx.render({ 
+    return ctx.render({
       users,
       checkedUser: username,
       isPasswordCorrect: isValid,
-      message: isValid ? "Senha correta!" : "Senha incorreta!"
+      message: isValid ? "Senha correta!" : "Senha incorreta!",
     });
-  }
+  },
 };
 
 export default function CheckAllKeys({ data }: PageProps<Data>) {
@@ -104,9 +104,13 @@ export default function CheckAllKeys({ data }: PageProps<Data>) {
           </button>
         </div>
         {data.message && (
-          <div class={`mt-2 p-2 rounded ${
-            data.isPasswordCorrect ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-          }`}>
+          <div
+            class={`mt-2 p-2 rounded ${
+              data.isPasswordCorrect
+                ? "bg-green-100 text-green-700"
+                : "bg-red-100 text-red-700"
+            }`}
+          >
             {data.message}
           </div>
         )}
