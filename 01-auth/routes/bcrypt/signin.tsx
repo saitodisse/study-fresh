@@ -4,6 +4,15 @@ import { setCookie } from "$std/http/cookie.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 import { User } from "../api/types/User.ts";
 
+/**
+ * Signin page
+ * -----------
+ * This page allows users to create an account.
+ *
+ * TODO: - [ ] Add a form to create a new user account.
+ * TODO: - [ ] Save the user to the KV store.
+ * TODO: - [ ] Redirect to the home page after creating the account.
+ */
 export const handler: Handlers = {
   async POST(req, _ctx) {
     const form = await req.formData();
