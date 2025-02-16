@@ -72,18 +72,18 @@ export default function CheckAllKeys({ data }: PageProps<Data>) {
   const { users } = data;
 
   return (
-    <div class="p-4">
-      <h1 class="text-2xl font-bold mb-4">Usuários Cadastrados</h1>
+    <div class="p-4 bg-gray-900 text-white min-h-screen">
+      <h1 class="text-2xl font-bold mb-4 text-white">Usuários Cadastrados</h1>
 
-      <form method="POST" class="mb-8 p-4 bg-gray-100 rounded">
-        <h2 class="text-lg font-semibold mb-4">Verificar Senha</h2>
+      <form method="POST" class="mb-8 p-4 bg-gray-800 rounded">
+        <h2 class="text-lg font-semibold mb-4 text-white">Verificar Senha</h2>
         <div class="flex gap-4 items-end">
           <div>
             <label class="block text-sm mb-1">Username</label>
             <input
               type="text"
               name="username"
-              class="px-2 py-1 border rounded"
+              class="px-2 py-1 border rounded bg-gray-700 text-white border-gray-600"
               required
             />
           </div>
@@ -92,13 +92,13 @@ export default function CheckAllKeys({ data }: PageProps<Data>) {
             <input
               type="password"
               name="password"
-              class="px-2 py-1 border rounded"
+              class="px-2 py-1 border rounded bg-gray-700 text-white border-gray-600"
               required
             />
           </div>
           <button
             type="submit"
-            class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
+            class="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700"
           >
             Verificar
           </button>
@@ -107,8 +107,8 @@ export default function CheckAllKeys({ data }: PageProps<Data>) {
           <div
             class={`mt-2 p-2 rounded ${
               data.isPasswordCorrect
-                ? "bg-green-100 text-green-700"
-                : "bg-red-100 text-red-700"
+                ? "bg-green-900 text-green-300"
+                : "bg-red-900 text-red-300"
             }`}
           >
             {data.message}
@@ -122,7 +122,7 @@ export default function CheckAllKeys({ data }: PageProps<Data>) {
             <span class="mr-4">{user.username}</span>
             <a
               href={`/users/delete/${user.username}`}
-              class="bg-red-500 text-white px-2 py-1 rounded text-sm hover:bg-red-600"
+              class="bg-red-600 text-white px-2 py-1 rounded text-sm hover:bg-red-700"
             >
               Excluir
             </a>
