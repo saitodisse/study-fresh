@@ -83,7 +83,7 @@ export default function SigninPage(props: PageProps) {
               type="username"
               id="username"
               name="username"
-              class="mt-2 px-3 py-2 border rounded w-full"
+              class="mt-2 px-3 py-2 border rounded w-full bg-gray-800 text-white border-gray-600 focus:border-gray-500 focus:ring-gray-500"
               required
             />
           </div>
@@ -93,7 +93,7 @@ export default function SigninPage(props: PageProps) {
               type="password"
               id="password"
               name="password"
-              class="mt-2 px-3 py-2 border rounded w-full"
+              class="mt-2 px-3 py-2 border rounded w-full bg-gray-800 text-white border-gray-600 focus:border-gray-500 focus:ring-gray-500"
               required
             />
           </div>
