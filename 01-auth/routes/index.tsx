@@ -1,11 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { getCookies } from "$std/http/cookie.ts";
-
-interface Data {
-  isAllowed: boolean;
-  session_value: string;
-  session_exp: string;
-}
+import { Data } from "./Data.tsx";
 
 export const handler: Handlers = {
   GET(req, ctx) {
@@ -58,8 +53,8 @@ export default function Home({ data, url }: PageProps<Data>) {
                 </a>
               </div>
               <div>
-                <a className="underline" href="/users/all-users">
-                  Listar usuários
+                <a className="underline" href="/db/list-all">
+                  Listagens, banco de dados
                 </a>
               </div>
             </div>

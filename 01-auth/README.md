@@ -1,3 +1,10 @@
+## TODO
+
+- [x] (01-auth\routes\bcrypt\forgot-password.tsx) Corrigir o envio de email
+- [ ] Criar confirmação para verificar se o email é realmente válido
+
+---
+
 ## Guia de Estudos Sucinto: Autenticação com Fresh e Deno (10 Tasks)
 
 ### Tópico 1: Fundamentos e Projeto Inicial

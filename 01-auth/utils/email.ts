@@ -1,29 +1,27 @@
-import { SmtpClient } from "https://deno.land/x/smtp/mod.ts";
+import { EmailParams, MailerSend, Recipient, Sender } from "mailersend";
+import { EmailConfig } from "../types/EmailConfig.ts";
 
-interface EmailConfig {
-  to: string;
-  subject: string;
-  html: string;
-}
-
-export async function sendEmail({ to, subject, html }: EmailConfig) {
-  console.log(`Sending email from ${Deno.env.get("GCP_EMAIL")!} to ${to}`);
-
-  const client = new SmtpClient();
-
-  await client.connectTLS({
-    hostname: "smtp.gmail.com",
-    port: 465,
-    username: Deno.env.get("GCP_EMAIL")!,
-    password: Deno.env.get("GCP_CLIENT_SECRET")!,
+export async function sendEmail({ to, subject, html, text }: EmailConfig) {
+  const mailerSend = new MailerSend({
+    apiKey: Deno.env.get("MAILER_SEND_API_KEY") as string,
   });
 
-  await client.send({
-    from: Deno.env.get("GCP_EMAIL")!,
-    to: to,
-    subject: subject,
-    content: html,
-  });
+  const sentFrom = new Sender(
+    "robot@trial-0r83ql372opgzw1j.mlsender.net",
+    "AUTH HELPER",
+  );
 
-  await client.close();
+  const recipients = [
+    new Recipient(to, "Client Name Example"),
+  ];
+
+  const emailParams = new EmailParams()
+    .setFrom(sentFrom)
+    .setTo(recipients)
+    .setReplyTo(sentFrom)
+    .setSubject(subject)
+    .setHtml(html)
+    .setText(text || "");
+
+  await mailerSend.email.send(emailParams);
 }

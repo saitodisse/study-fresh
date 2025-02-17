@@ -1,12 +1,7 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { sendEmail } from "../../utils/email.ts";
-import { User } from "../api/types/User.ts";
-
-interface PasswordReset {
-  username: string;
-  token: string;
-  expiresAt: Date;
-}
+import { sendEmail } from "../../../utils/email.ts";
+import { User } from "../../api/types/User.ts";
+import { PasswordReset } from "../../../types/PasswordReset.tsx";
 
 export const handler: Handlers = {
   async POST(req, _ctx) {

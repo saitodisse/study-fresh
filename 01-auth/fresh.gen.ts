@@ -2,41 +2,44 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import * as $Data from "./routes/Data.tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_login from "./routes/api/login.ts";
 import * as $api_logout from "./routes/api/logout.ts";
 import * as $api_types_User from "./routes/api/types/User.ts";
-import * as $bcrypt_forgot_password from "./routes/bcrypt/forgot-password.tsx";
+import * as $bcrypt_forgot_password_index from "./routes/bcrypt/forgot-password/index.tsx";
+import * as $bcrypt_forgot_password_reset_token_ from "./routes/bcrypt/forgot-password/reset/[token].tsx";
 import * as $bcrypt_login from "./routes/bcrypt/login.tsx";
-import * as $bcrypt_reset_token_ from "./routes/bcrypt/reset/[token].tsx";
 import * as $bcrypt_signin from "./routes/bcrypt/signin.tsx";
+import * as $db_delete from "./routes/db/delete.tsx";
+import * as $db_list_all from "./routes/db/list-all.tsx";
 import * as $docs_01_understanding_auth from "./routes/docs/01-understanding-auth.tsx";
 import * as $docs_02_sessions from "./routes/docs/02-sessions.tsx";
 import * as $docs_03_cookies from "./routes/docs/03-cookies.tsx";
 import * as $index from "./routes/index.tsx";
-import * as $users_all_users from "./routes/users/all-users.tsx";
-import * as $users_delete_username_ from "./routes/users/delete/[username].tsx";
 
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
+    "./routes/Data.tsx": $Data,
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/api/login.ts": $api_login,
     "./routes/api/logout.ts": $api_logout,
     "./routes/api/types/User.ts": $api_types_User,
-    "./routes/bcrypt/forgot-password.tsx": $bcrypt_forgot_password,
+    "./routes/bcrypt/forgot-password/index.tsx": $bcrypt_forgot_password_index,
+    "./routes/bcrypt/forgot-password/reset/[token].tsx":
+      $bcrypt_forgot_password_reset_token_,
     "./routes/bcrypt/login.tsx": $bcrypt_login,
-    "./routes/bcrypt/reset/[token].tsx": $bcrypt_reset_token_,
     "./routes/bcrypt/signin.tsx": $bcrypt_signin,
+    "./routes/db/delete.tsx": $db_delete,
+    "./routes/db/list-all.tsx": $db_list_all,
     "./routes/docs/01-understanding-auth.tsx": $docs_01_understanding_auth,
     "./routes/docs/02-sessions.tsx": $docs_02_sessions,
     "./routes/docs/03-cookies.tsx": $docs_03_cookies,
     "./routes/index.tsx": $index,
-    "./routes/users/all-users.tsx": $users_all_users,
-    "./routes/users/delete/[username].tsx": $users_delete_username_,
   },
   islands: {},
   baseUrl: import.meta.url,
