@@ -1,4 +1,4 @@
-import { EmailParams, MailerSend, Recipient, Sender } from "mailersend";
+import { EmailParams, MailerSend, Recipient, Sender } from "npm:mailersend";
 import { EmailConfig } from "../types/EmailConfig.ts";
 
 export async function sendEmail({ to, subject, html, text }: EmailConfig) {
