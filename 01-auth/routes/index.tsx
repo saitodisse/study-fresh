@@ -2,6 +2,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { getCookies } from "$std/http/cookie.ts";
 import { Data } from "./Data.tsx";
 import SessionCountdown from "../islands/SessionCountdown.tsx";
+import MyIsland from "../islands/MyIsland.tsx";
 
 export const handler: Handlers = {
   GET(req, ctx) {
@@ -34,13 +35,17 @@ export default function Home({ data, url }: PageProps<Data>) {
         </p>
 
         {data.isAllowed && data.session_exp && (
-          <p class="my-8">
-            value: {data.session_value}
-            <br />
-            exp: {new Date(Number(data.session_exp)).toLocaleString()}
+          <div class="my-8">
+            <p>
+              value: {data.session_value}
+              <br />
+              exp: {new Date(Number(data.session_exp)).toLocaleString()}
+            </p>
             <SessionCountdown exp={Number(data.session_exp)} />
-          </p>
+          </div>
         )}
+
+        <MyIsland />
 
         {!data.isAllowed
           ? (
