@@ -15,20 +15,20 @@ export default function MyCounterIsland() {
       <div className="p-8 bg-gray-900 rounded-2xl shadow-2xl">
         <div className="flex flex-row justify-center items-center space-x-8">
           <button
-            className={`w-24 h-24 bg-indigo-600 rounded-full shadow-2xl text-6xl text-white font-extrabold hover:bg-indigo-700 transition duration-100`}
+            className={`w-16 h-16 bg-indigo-600 rounded-full shadow-2xl text-2xl text-white font-extrabold hover:bg-indigo-700 transition duration-100`}
             onClick={() => (count.value -= 1)}
           >
             ➖
           </button>
           <div
-            className={`w-28 h-28 flex items-center justify-center bg-gray-700 rounded-full text-6xl font-bold ${
+            className={`w-16 h-16 flex items-center justify-center bg-gray-700 rounded-full text-2xl font-bold ${
               getCounterColor(count.value)
             } shadow-inner`}
           >
             {count}
           </div>
           <button
-            className={`w-24 h-24 bg-indigo-600 rounded-full shadow-2xl text-6xl text-white font-extrabold hover:bg-indigo-700 transition duration-100`}
+            className={`w-16 h-16 bg-indigo-600 rounded-full shadow-2xl text-2xl text-white font-extrabold hover:bg-indigo-700 transition duration-100`}
             onClick={() => (count.value += 1)}
           >
             ➕

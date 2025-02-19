@@ -31,7 +31,7 @@ export default function Home({ data }: PageProps<Data>) {
               : "Você não está autenticado!"}
           </p>
           {data.isAllowed && data.session_exp && (
-            <div class="font-mono text-white my-8 flex flex-col items-center justify-center space-x-8">
+            <div class="font-mono text-white my-8 flex flex-col items-start text-left space-y-4">
               <p>
                 sessão: {data.session_value}
               </p>

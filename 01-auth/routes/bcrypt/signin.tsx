@@ -166,10 +166,10 @@ export default function SigninPage(props: PageProps) {
               Criar Conta
             </button>
             <a
-              href="/login"
+              href="/bcrypt/login"
               class="ml-6 text-blue-300 hover:underline text-2xl"
             >
-              Já tem uma conta? Faça login
+              Já tem uma conta? Faça login agora
             </a>
           </form>
         </div>

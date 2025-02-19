@@ -7,7 +7,7 @@ export default function HeaderMenu() {
             <a href="/" className="text-white hover:text-gray-300">Índice</a>
           </li>
           <li>
-            <a href="/login" className="text-white hover:text-gray-300">
+            <a href="/bcrypt/login" className="text-white hover:text-gray-300">
               Login
             </a>
           </li>

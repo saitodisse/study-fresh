@@ -12,7 +12,13 @@ export default function App({ Component }: PageProps) {
       </head>
       <body className="dark:bg-gray-800 dark:text-slate-200">
         <HeaderMenu />
-        <Component />
+        <div class="px-8 py-8 mx-auto max-w-screen-lg">
+          <div className="p-8 bg-gray-900 rounded-2xl shadow-2xl">
+            <div class="max-w-screen-md mx-auto flex flex-col">
+              <Component />
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   );

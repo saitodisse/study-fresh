@@ -116,7 +116,7 @@ export default function ForgotPasswordPage(props: PageProps) {
               Recuperar Senha
             </button>
             <a
-              href="/login"
+              href="/bcrypt/login"
               class="ml-6 text-blue-300 hover:underline text-2xl"
             >
               Voltar ao login

@@ -58,7 +58,7 @@ export default function SessionCountdownIsland(
     <DevBorder componentName="SessionCountdownIsland">
       <div class="text-center mt-4 pb-4">
         <p
-          class={`text-4xl font-semibold ${
+          class={`text-2xl p-4 font-semibold ${
             timeLeft <= 0 ? "text-red-400" : "text-white"
           }`}
         >
