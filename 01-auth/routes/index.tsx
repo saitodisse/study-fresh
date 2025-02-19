@@ -1,16 +1,18 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { getCookies } from "$std/http/cookie.ts";
 import { Data } from "./Data.tsx";
+import SessionCountdown from "../islands/SessionCountdown.tsx";
 
 export const handler: Handlers = {
   GET(req, ctx) {
     const cookies = getCookies(req.headers);
 
-    console.log(cookies.auth);
+    console.log("cookies.auth", cookies.auth);
+    console.log("cookies.exp", cookies.exp);
 
     return ctx.render!({
       isAllowed: cookies.auth && cookies.auth !== "",
-      session_value: cookies.value,
+      session_value: cookies.auth,
       session_exp: cookies.exp,
     });
   },
@@ -31,11 +33,12 @@ export default function Home({ data, url }: PageProps<Data>) {
             : "Você não está autenticado!"}
         </p>
 
-        {data.session_value && (
+        {data.isAllowed && data.session_exp && (
           <p class="my-8">
             value: {data.session_value}
             <br />
-            exp: {data.session_exp}
+            exp: {new Date(Number(data.session_exp)).toLocaleString()}
+            <SessionCountdown exp={Number(data.session_exp)} />
           </p>
         )}
 

@@ -16,7 +16,9 @@ export const handler: Handlers = {
     const password = form.get("password")?.toString() || "";
 
     if (!usernameOrEmail || !password) {
-      return _ctx.render!({ message: "Usuário/Email e senha são obrigatórios!" });
+      return _ctx.render!({
+        message: "Usuário/Email e senha são obrigatórios!",
+      });
     }
 
     const kv = await Deno.openKv(Deno.env.get("KV_STORE")!);
@@ -48,18 +50,32 @@ export const handler: Handlers = {
 
     // Salva o cookie de autenticação
     const headers = new Headers();
+    const expiration_time = new Date(Date.now() + 1000 * 60);
     setCookie(headers, {
       name: "auth",
       value: Math.random().toString(36).slice(2),
       path: "/",
       secure: true,
       sameSite: "Lax",
-      expires: new Date(Date.now() + 1000 * 5), // 5 segundos
-      // expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // 1 semana
+      expires: expiration_time, // 1 minuto
+    });
+    setCookie(headers, {
+      name: "exp",
+      value: expiration_time.getTime().toString(),
+      path: "/",
+      secure: true,
+      sameSite: "Lax",
+      expires: expiration_time, // 1 minuto
     });
 
-    // Define o cabeçalho de redirecionamento para a página inicial
-    headers.set("location", `/`);
+    // Adiciona o tempo de expiração como parâmetro de query
+    const redirectUrl = new URL("/", req.url);
+    redirectUrl.searchParams.set(
+      "expires",
+      expiration_time.getTime().toString(),
+    );
+
+    headers.set("location", redirectUrl.toString());
 
     return new Response(null, {
       status: 302, // Código de redirecionamento
