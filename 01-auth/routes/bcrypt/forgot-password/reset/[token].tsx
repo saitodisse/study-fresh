@@ -112,14 +112,14 @@ export default function ResetPasswordPage(props: PageProps) {
             <p
               class={`mt-4 ${
                 isError ? "text-red-400" : "text-green-400"
-              } text-3xl`}
+              } text-2xl`}
             >
               {message}
             </p>
           )}
           <form class="mt-6" method="POST">
             <div class="mb-6">
-              <label class="block text-white text-3xl" htmlFor="password">
+              <label class="block text-white text-2xl" htmlFor="password">
                 Nova Senha:
               </label>
               <input
@@ -132,7 +132,7 @@ export default function ResetPasswordPage(props: PageProps) {
             </div>
             <button
               type="submit"
-              class="px-6 py-3 bg-green-600 text-white rounded hover:bg-green-700 text-3xl"
+              class="px-6 py-3 bg-green-600 text-white rounded hover:bg-green-700 text-2xl"
             >
               Atualizar Senha
             </button>

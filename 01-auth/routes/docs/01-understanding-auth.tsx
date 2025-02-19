@@ -3,7 +3,7 @@ export default function Home() {
     <div class="px-4 py-8 mx-auto">
       <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
         <div className="flex flex-row space-x-2 items-center justify-between w-full">
-          <h1 class="text-3xl font-bold">Autenticação vs Autorização</h1>
+          <h1 class="text-2xl font-bold">Autenticação vs Autorização</h1>
           <img
             class="my-6"
             src="/logo.svg"

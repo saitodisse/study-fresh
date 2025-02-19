@@ -91,33 +91,33 @@ export default function ForgotPasswordPage(props: PageProps) {
             <p
               class={`mt-4 ${
                 isError ? "text-red-400" : "text-green-400"
-              } text-3xl`}
+              } text-2xl`}
             >
               {message}
             </p>
           )}
           <form class="mt-6" method="POST">
             <div class="mb-6">
-              <label class="block text-white text-3xl" htmlFor="username">
+              <label class="block text-white text-2xl" htmlFor="username">
                 Usuário:
               </label>
               <input
                 type="text"
                 id="username"
                 name="username"
-                class="mt-2 px-4 py-3 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+                class="mt-2 text-2xl px-4 py-3 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
                 required
               />
             </div>
             <button
               type="submit"
-              class="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-3xl"
+              class="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-2xl"
             >
               Recuperar Senha
             </button>
             <a
               href="/login"
-              class="ml-6 text-blue-300 hover:underline text-3xl"
+              class="ml-6 text-blue-300 hover:underline text-2xl"
             >
               Voltar ao login
             </a>

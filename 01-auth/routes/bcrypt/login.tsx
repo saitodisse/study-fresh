@@ -109,11 +109,11 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
         <div class="max-w-screen-md mx-auto flex flex-col">
           <h1 class="text-4xl font-bold text-white">Login</h1>
           {pageProps.data?.message && (
-            <p class="mt-4 text-red-400 text-3xl">{pageProps.data.message}</p>
+            <p class="mt-4 text-red-400 text-2xl">{pageProps.data.message}</p>
           )}
           <form class="mt-6" method="POST">
             <div>
-              <label class="block text-white text-3xl" htmlFor="username">
+              <label class="block text-white text-2xl" htmlFor="username">
                 Usuário ou Email:
               </label>
               <input
@@ -121,11 +121,11 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
                 id="username"
                 name="username"
                 placeholder="usuário ou email"
-                class="text-3xl mt-2 px-4 py-3 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+                class="text-2xl mt-2 px-4 py-3 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
               />
             </div>
             <div class="mt-6">
-              <label class="block text-white text-3xl" htmlFor="password">
+              <label class="block text-white text-2xl" htmlFor="password">
                 Senha:
               </label>
               <input
@@ -133,12 +133,12 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
                 id="password"
                 name="password"
                 placeholder="****"
-                class="text-3xl mt-2 px-4 py-3 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+                class="text-2xl mt-2 px-4 py-3 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
               />
             </div>
             <button
               type="submit"
-              class="mt-6 px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-3xl"
+              class="mt-6 px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-2xl"
             >
               Entrar
             </button>
@@ -146,18 +146,18 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
           <div class="mt-6 flex justify-between">
             <a
               href="/bcrypt/forgot-password"
-              class="text-blue-300 hover:underline text-3xl"
+              class="text-blue-300 hover:underline text-2xl"
             >
               Esqueceu sua senha?
             </a>
             <a
               href="/bcrypt/signin"
-              class="text-blue-300 hover:underline text-3xl"
+              class="text-blue-300 hover:underline text-2xl"
             >
               Criar nova conta
             </a>
           </div>
-          <div id="loading" class="hidden mt-4 text-center text-white text-3xl">
+          <div id="loading" class="hidden mt-4 text-center text-white text-2xl">
             Autenticando...
           </div>
         </div>

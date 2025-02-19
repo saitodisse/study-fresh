@@ -24,7 +24,7 @@ export default function Home({ data }: PageProps<Data>) {
           <p
             class={"my-8 " +
               (data.isAllowed ? "text-green-400" : "text-red-400") +
-              " text-3xl"}
+              " text-2xl"}
           >
             {data.isAllowed
               ? "Você está autenticado!"
@@ -41,7 +41,7 @@ export default function Home({ data }: PageProps<Data>) {
               <SessionCountdownIsland exp={Number(data.session_exp)} />
               <MyCounterIsland />
               <a
-                className="underline text-blue-300 text-3xl"
+                className="underline text-blue-300 text-2xl"
                 href="/db/list-all"
               >
                 Listagens, banco de dados
@@ -50,15 +50,19 @@ export default function Home({ data }: PageProps<Data>) {
           )}
           {!data.isAllowed
             ? (
-              <div className="space-y-6">
+              <div className="flex flex-col space-y-6">
+                <h1 class="mt-32 mb-1 text-2xl font-bold text-white">
+                  bcrypt
+                </h1>
+
                 <a
-                  className="underline text-blue-300 text-3xl"
+                  className="underline text-blue-300 text-2xl"
                   href="/bcrypt/login"
                 >
                   Login (bcrypt + Deno KV)
                 </a>
                 <a
-                  className="underline text-blue-300 text-3xl"
+                  className="underline text-blue-300 text-2xl"
                   href="/bcrypt/signin"
                 >
                   Criar conta (bcrypt + Deno KV)
@@ -67,18 +71,18 @@ export default function Home({ data }: PageProps<Data>) {
             )
             : (
               <a
-                className="underline text-yellow-300 text-3xl"
+                className="underline text-yellow-300 text-2xl"
                 href="/bcrypt/logout"
               >
                 Logout
               </a>
             )}
-          <h1 class="mt-8 mb-4 text-4xl font-bold text-white">Documentação</h1>
-          <ul class="space-y-4">
+          <h1 class="mt-32 mb-1 text-base font-bold text-white">explicações</h1>
+          <ul class="space-y-1">
             <li>
               <a
                 href="/docs/01-understanding-auth"
-                className="underline hover:text-gray-300 text-white text-3xl"
+                className="underline hover:text-gray-300 "
               >
                 Autenticação vs Autorização
               </a>
@@ -86,7 +90,7 @@ export default function Home({ data }: PageProps<Data>) {
             <li>
               <a
                 href="/docs/02-sessions"
-                className="underline hover:text-gray-300 text-white text-3xl"
+                className="underline hover:text-gray-300 "
               >
                 Sessões
               </a>
@@ -94,7 +98,7 @@ export default function Home({ data }: PageProps<Data>) {
             <li>
               <a
                 href="/docs/03-cookies"
-                className="underline hover:text-gray-300 text-white text-3xl"
+                className="underline hover:text-gray-300 "
               >
                 Cookies
               </a>

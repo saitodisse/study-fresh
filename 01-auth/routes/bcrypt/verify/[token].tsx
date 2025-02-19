@@ -77,14 +77,14 @@ export default function VerifyEmailPage(props: PageProps) {
             <p
               class={`mt-4 ${
                 isError ? "text-red-400" : "text-green-400"
-              } text-3xl`}
+              } text-2xl`}
             >
               {message}
             </p>
           )}
           <a
             href="/bcrypt/login"
-            class="mt-6 text-blue-300 hover:underline text-3xl"
+            class="mt-6 text-blue-300 hover:underline text-2xl"
           >
             Ir para o login
           </a>
