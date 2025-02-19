@@ -52,9 +52,9 @@ export default function SessionCountdown(props: SessionCountdownProps) {
   }, []);
 
   return (
-    <div class="text-center mt-2">
+    <div class="text-center mt-4">
       <p
-        class={`text-lg font-semibold ${
+        class={`text-4xl font-semibold ${
           timeLeft <= 0 ? "text-red-400" : "text-white"
         }`}
       >

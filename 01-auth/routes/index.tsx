@@ -7,10 +7,6 @@ import MyIsland from "../islands/MyIsland.tsx";
 export const handler: Handlers = {
   GET(req, ctx) {
     const cookies = getCookies(req.headers);
-
-    console.log("cookies.auth", cookies.auth);
-    console.log("cookies.exp", cookies.exp);
-
     return ctx.render!({
       isAllowed: cookies.auth && cookies.auth !== "",
       session_value: cookies.auth,
@@ -19,25 +15,24 @@ export const handler: Handlers = {
   },
 };
 
-export default function Home({ data, url }: PageProps<Data>) {
+export default function Home({ data }: PageProps<Data>) {
   return (
-    <div class="px-4 py-8 mx-auto">
-      <div className="p-4 bg-gray-800 rounded-xl shadow-lg">
+    <div class="px-8 py-8 mx-auto">
+      <div className="p-8 bg-gray-900 rounded-2xl shadow-2xl">
         <div class="max-w-screen-md mx-auto flex flex-col">
-          <h1 class="mt-8 text-2xl font-bold text-white">Página Inicial</h1>
-
+          <h1 class="mt-8 text-5xl font-bold text-white">Página Inicial</h1>
           <p
-            class={"my-8" +
-              (data.isAllowed ? " text-green-400" : " text-red-400")}
+            class={"my-8 " +
+              (data.isAllowed ? "text-green-400" : "text-red-400") +
+              " text-3xl"}
           >
             {data.isAllowed
               ? "Você está autenticado!"
               : "Você não está autenticado!"}
           </p>
-
           {data.isAllowed && data.session_exp && (
-            <div class="my-8 flex flex-row justify-start space-x-10 items-baseline">
-              <p class="text-white">
+            <div class="my-8 flex flex-row items-center space-x-8">
+              <p class="text-3xl text-white">
                 value: {data.session_value}, exp:{" "}
                 {new Date(Number(data.session_exp)).toLocaleString()}
               </p>
@@ -45,39 +40,43 @@ export default function Home({ data, url }: PageProps<Data>) {
               <MyIsland />
             </div>
           )}
-
           {!data.isAllowed
             ? (
-              <div className="space-y-2">
-                <div>
-                  <a className="underline text-white" href="/bcrypt/login">
-                    Login (bcrypt + Deno KV)
-                  </a>
-                </div>
-                <div>
-                  <a className="underline text-white" href="/bcrypt/signin">
-                    Criar conta (bcrypt + Deno KV)
-                  </a>
-                </div>
-                <div>
-                  <a className="underline text-white" href="/db/list-all">
-                    Listagens, banco de dados
-                  </a>
-                </div>
+              <div className="space-y-6">
+                <a
+                  className="underline text-blue-300 text-3xl"
+                  href="/bcrypt/login"
+                >
+                  Login (bcrypt + Deno KV)
+                </a>
+                <a
+                  className="underline text-blue-300 text-3xl"
+                  href="/bcrypt/signin"
+                >
+                  Criar conta (bcrypt + Deno KV)
+                </a>
+                <a
+                  className="underline text-blue-300 text-3xl"
+                  href="/db/list-all"
+                >
+                  Listagens, banco de dados
+                </a>
               </div>
             )
             : (
-              <a className="underline text-white" href="/bcrypt/logout">
+              <a
+                className="underline text-yellow-300 text-3xl"
+                href="/bcrypt/logout"
+              >
                 Logout
               </a>
             )}
-
-          <h1 class="mt-8 mb-4 text-2xl font-bold text-white">Documentação</h1>
+          <h1 class="mt-8 mb-4 text-4xl font-bold text-white">Documentação</h1>
           <ul class="space-y-4">
             <li>
               <a
                 href="/docs/01-understanding-auth"
-                className="underline hover:text-gray-300 text-white"
+                className="underline hover:text-gray-300 text-white text-3xl"
               >
                 Autenticação vs Autorização
               </a>
@@ -85,7 +84,7 @@ export default function Home({ data, url }: PageProps<Data>) {
             <li>
               <a
                 href="/docs/02-sessions"
-                className="underline hover:text-gray-300 text-white"
+                className="underline hover:text-gray-300 text-white text-3xl"
               >
                 Sessões
               </a>
@@ -93,7 +92,7 @@ export default function Home({ data, url }: PageProps<Data>) {
             <li>
               <a
                 href="/docs/03-cookies"
-                className="underline hover:text-gray-300 text-white"
+                className="underline hover:text-gray-300 text-white text-3xl"
               >
                 Cookies
               </a>

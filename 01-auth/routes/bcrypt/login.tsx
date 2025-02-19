@@ -93,16 +93,16 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
     });
   }
   return (
-    <div class="px-4 py-8 mx-auto">
-      <div className="p-4 bg-gray-800 rounded-xl shadow-lg">
+    <div class="px-8 py-8 mx-auto">
+      <div className="p-8 bg-gray-900 rounded-2xl shadow-2xl">
         <div class="max-w-screen-md mx-auto flex flex-col">
-          <h1 class="text-2xl font-bold text-white">Login</h1>
+          <h1 class="text-4xl font-bold text-white">Login</h1>
           {pageProps.data?.message && (
-            <p class="mt-4 text-red-400">{pageProps.data.message}</p>
+            <p class="mt-4 text-red-400 text-3xl">{pageProps.data.message}</p>
           )}
-          <form class="mt-4" method="POST">
+          <form class="mt-6" method="POST">
             <div>
-              <label class="block text-white" htmlFor="username">
+              <label class="block text-white text-3xl" htmlFor="username">
                 Usuário ou Email:
               </label>
               <input
@@ -110,42 +110,42 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
                 id="username"
                 name="username"
                 placeholder="Digite seu usuário ou email"
-                class="mt-2 px-3 py-2 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+                class="mt-2 px-4 py-3 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
               />
             </div>
-            <div class="mt-4">
-              <label class="block text-white" htmlFor="password">
+            <div class="mt-6">
+              <label class="block text-white text-3xl" htmlFor="password">
                 Senha:
               </label>
               <input
                 type="password"
                 id="password"
                 name="password"
-                class="mt-2 px-3 py-2 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+                class="mt-2 px-4 py-3 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
               />
             </div>
             <button
               type="submit"
-              class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              class="mt-6 px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-3xl"
             >
               Entrar
             </button>
           </form>
-          <div class="mt-4 flex justify-between">
+          <div class="mt-6 flex justify-between">
             <a
               href="/bcrypt/forgot-password"
-              class="text-blue-300 hover:underline"
+              class="text-blue-300 hover:underline text-3xl"
             >
               Esqueceu sua senha?
             </a>
             <a
               href="/bcrypt/signin"
-              class="text-blue-300 hover:underline"
+              class="text-blue-300 hover:underline text-3xl"
             >
               Criar nova conta
             </a>
           </div>
-          <div id="loading" class="hidden mt-4 text-center text-white">
+          <div id="loading" class="hidden mt-4 text-center text-white text-3xl">
             Autenticando...
           </div>
         </div>
