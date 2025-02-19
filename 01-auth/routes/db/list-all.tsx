@@ -38,8 +38,8 @@ export default function ListAll({ data }: PageProps<HandlerData>) {
   const { users, password_reset_list } = data;
 
   return (
-    <div className="block">
-      <div class="p-4 bg-gray-900 text-white">
+    <>
+      <div>
         <h1 class="text-2xl font-bold mb-4 text-white">Usuários</h1>
 
         <ul class="space-y-2">
@@ -61,15 +61,13 @@ export default function ListAll({ data }: PageProps<HandlerData>) {
         )}
       </div>
 
-      <div class="p-4 bg-gray-900 text-white">
+      <div>
         <h1 class="text-2xl font-bold mb-4 text-white">
           Password Reset Tokens
         </h1>
-
         <ul class="space-y-2">
           {password_reset_list.map((passwordReset) => {
             const isExpired = new Date(passwordReset.expiresAt) < new Date();
-
             return (
               <li key={passwordReset.token} class="flex items-center">
                 <span class="mr-4">
@@ -93,6 +91,6 @@ export default function ListAll({ data }: PageProps<HandlerData>) {
           </p>
         )}
       </div>
-    </div>
+    </>
   );
 }

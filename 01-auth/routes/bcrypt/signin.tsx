@@ -117,63 +117,59 @@ export default function SigninPage(props: PageProps) {
     : "text-green-400";
 
   return (
-    <div class="px-8 py-8 mx-auto">
-      <div className="p-8 bg-gray-900 rounded-2xl shadow-2xl">
-        <div class="max-w-screen-md mx-auto flex flex-col">
-          <h1 class="text-4xl font-bold text-white">Criar Conta</h1>
-          {message && <p class={`mt-4 text-2xl ${messageClass}`}>{message}</p>}
-          <form class="mt-6" method="POST">
-            <div class="mb-6">
-              <label class="block text-white " htmlFor="username">
-                Usuário:
-              </label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                class="text-2xl mt-2 px-4 py-3 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
-                required
-              />
-            </div>
-            <div class="mb-6">
-              <label class="block text-white text-2xl" htmlFor="email">
-                Email:
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="text-2xl mt-2 px-4 py-3 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
-                required
-              />
-            </div>
-            <div class="mb-6">
-              <label class="block text-white text-2xl" htmlFor="password">
-                Senha:
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                class="text-2xl mt-2 px-4 py-3 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              class="px-6 py-3 bg-green-600 text-white rounded hover:bg-green-700 text-2xl"
-            >
-              Criar Conta
-            </button>
-            <a
-              href="/bcrypt/login"
-              class="ml-6 text-blue-300 hover:underline text-2xl"
-            >
-              Já tem uma conta? Faça login agora
-            </a>
-          </form>
+    <>
+      <h1 class="text-4xl font-bold text-white">Criar Conta</h1>
+      {message && <p class={`mt-4 text-2xl ${messageClass}`}>{message}</p>}
+      <form class="mt-6" method="POST">
+        <div class="mb-6">
+          <label class="block text-white" htmlFor="username">
+            Usuário:
+          </label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="text-2xl mt-2 px-4 py-3 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+            required
+          />
         </div>
-      </div>
-    </div>
+        <div class="mb-6">
+          <label class="block text-white text-2xl" htmlFor="email">
+            Email:
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="text-2xl mt-2 px-4 py-3 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+            required
+          />
+        </div>
+        <div class="mb-6">
+          <label class="block text-white text-2xl" htmlFor="password">
+            Senha:
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="text-2xl mt-2 px-4 py-3 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="px-6 py-3 bg-green-600 text-white rounded hover:bg-green-700 text-2xl"
+        >
+          Criar Conta
+        </button>
+        <a
+          href="/bcrypt/login"
+          class="ml-6 text-blue-300 hover:underline text-2xl"
+        >
+          Já tem uma conta? Faça login agora
+        </a>
+      </form>
+    </>
   );
 }
