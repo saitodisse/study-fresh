@@ -56,14 +56,22 @@ export default function Home({ data }: PageProps<Data>) {
       )}
       {!data.isAllowed
         ? (
-          <div className="flex flex-col space-y-6">
-            <h1 class="mb-1 text-2xl font-bold text-white">bcrypt</h1>
-            <PrimaryLink href="/bcrypt/login">
-              Login (bcrypt + Deno KV)
-            </PrimaryLink>
-            <PrimaryLink href="/bcrypt/signin">
-              Criar conta (bcrypt + Deno KV)
-            </PrimaryLink>
+          <div className="block">
+            <div className="flex flex-col space-y-2">
+              <h1 class="text-2xl font-bold text-white">bcrypt</h1>
+              <PrimaryLink href="/bcrypt/login">
+                Login (bcrypt + Deno KV)
+              </PrimaryLink>
+              <PrimaryLink href="/bcrypt/signin">
+                Criar conta (bcrypt + Deno KV)
+              </PrimaryLink>
+            </div>
+            <div className="flex flex-col space-y-2 mt-10">
+              <h1 class="mb-1 text-2xl font-bold text-white">Github</h1>
+              <PrimaryLink href="/github/login">
+                Login
+              </PrimaryLink>
+            </div>
           </div>
         )
         : (

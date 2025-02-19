@@ -4,6 +4,8 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $api_github_auth from "./routes/api/github/auth.ts";
+import * as $api_github_callback from "./routes/api/github/callback.ts";
 import * as $bcrypt_forgot_password_index from "./routes/bcrypt/forgot-password/index.tsx";
 import * as $bcrypt_forgot_password_reset_token_ from "./routes/bcrypt/forgot-password/reset/[token].tsx";
 import * as $bcrypt_login from "./routes/bcrypt/login.tsx";
@@ -15,6 +17,7 @@ import * as $db_list_all from "./routes/db/list-all.tsx";
 import * as $docs_01_understanding_auth from "./routes/docs/01-understanding-auth.tsx";
 import * as $docs_02_sessions from "./routes/docs/02-sessions.tsx";
 import * as $docs_03_cookies from "./routes/docs/03-cookies.tsx";
+import * as $github_login from "./routes/github/login.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $model_User from "./routes/model/User.ts";
 import * as $MyCounterIsland from "./islands/MyCounterIsland.tsx";
@@ -26,6 +29,8 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/api/github/auth.ts": $api_github_auth,
+    "./routes/api/github/callback.ts": $api_github_callback,
     "./routes/bcrypt/forgot-password/index.tsx": $bcrypt_forgot_password_index,
     "./routes/bcrypt/forgot-password/reset/[token].tsx":
       $bcrypt_forgot_password_reset_token_,
@@ -38,6 +43,7 @@ const manifest = {
     "./routes/docs/01-understanding-auth.tsx": $docs_01_understanding_auth,
     "./routes/docs/02-sessions.tsx": $docs_02_sessions,
     "./routes/docs/03-cookies.tsx": $docs_03_cookies,
+    "./routes/github/login.tsx": $github_login,
     "./routes/index.tsx": $index,
     "./routes/model/User.ts": $model_User,
   },
