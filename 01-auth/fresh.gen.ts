@@ -16,7 +16,6 @@ import * as $docs_01_understanding_auth from "./routes/docs/01-understanding-aut
 import * as $docs_02_sessions from "./routes/docs/02-sessions.tsx";
 import * as $docs_03_cookies from "./routes/docs/03-cookies.tsx";
 import * as $index from "./routes/index.tsx";
-import * as $model_Data from "./routes/model/Data.ts";
 import * as $model_User from "./routes/model/User.ts";
 import * as $MyCounterIsland from "./islands/MyCounterIsland.tsx";
 import * as $SessionCountdownIsland from "./islands/SessionCountdownIsland.tsx";
@@ -40,7 +39,6 @@ const manifest = {
     "./routes/docs/02-sessions.tsx": $docs_02_sessions,
     "./routes/docs/03-cookies.tsx": $docs_03_cookies,
     "./routes/index.tsx": $index,
-    "./routes/model/Data.ts": $model_Data,
     "./routes/model/User.ts": $model_User,
   },
   islands: {

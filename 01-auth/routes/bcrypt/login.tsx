@@ -103,6 +103,14 @@ export const handler: Handlers = {
       sameSite: "Lax",
       expires: expiration_time, // 1 minuto
     });
+    setCookie(headers, {
+      name: "username",
+      value: userResult.value.username,
+      path: "/",
+      secure: true,
+      sameSite: "Lax",
+      expires: expiration_time, // 1 minuto
+    });
 
     // Adiciona o tempo de expiração como parâmetro de query
     const redirectUrl = new URL("/", req.url);

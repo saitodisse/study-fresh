@@ -1,5 +1,5 @@
 import { Handlers } from "$fresh/server.ts";
-import { getCookies, setCookie } from "$std/http/cookie.ts";
+import { deleteCookie, getCookies, setCookie } from "$std/http/cookie.ts";
 import { Session } from "../../types/Session.ts";
 
 export const handler: Handlers = {
@@ -28,19 +28,9 @@ export const handler: Handlers = {
     }
 
     // Clear cookies
-    setCookie(headers, {
-      name: "auth",
-      value: "",
-      path: "/",
-      expires: pastDate,
-    });
-
-    setCookie(headers, {
-      name: "exp",
-      value: "",
-      path: "/",
-      expires: pastDate,
-    });
+    deleteCookie(headers, "username");
+    deleteCookie(headers, "auth");
+    deleteCookie(headers, "exp");
 
     headers.set("location", "/bcrypt/login");
     return new Response(null, { status: 302, headers });

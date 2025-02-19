@@ -1,9 +1,15 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { getCookies } from "$std/http/cookie.ts";
-import { Data } from "./model/Data.ts";
 import SessionCountdownIsland from "../islands/SessionCountdownIsland.tsx";
 import MyCounterIsland from "../islands/MyCounterIsland.tsx";
 import { PrimaryLink } from "../components/PrimaryLink.tsx";
+
+interface Data {
+  isAllowed: boolean;
+  session_value: string;
+  session_exp: string;
+  username: string;
+}
 
 export const handler: Handlers = {
   GET(req, ctx) {
@@ -12,6 +18,7 @@ export const handler: Handlers = {
       isAllowed: cookies.auth && cookies.auth !== "",
       session_value: cookies.auth,
       session_exp: cookies.exp,
+      username: cookies.username,
     });
   },
 };
@@ -26,7 +33,7 @@ export default function Home({ data }: PageProps<Data>) {
           " text-2xl"}
       >
         {data.isAllowed
-          ? "Você está autenticado!"
+          ? `"${data.username}", você está autenticado!`
           : "Você não está autenticado!"}
       </p>
       {data.isAllowed && data.session_exp && (
