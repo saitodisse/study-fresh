@@ -30,7 +30,7 @@ export const handler: Handlers = {
 
     // 2. Generate unique token with expiration
     const token = crypto.randomUUID();
-    const expiresAt = new Date(Date.now() + 1000 * 60 * 30); // 30 minutes
+    const expiresAt = new Date(Date.now() + 1000 * 60 * 10); // 10 minutes
 
     // 3. Save reset token in KV store
     const resetData: PasswordReset = {
@@ -58,7 +58,7 @@ export const handler: Handlers = {
           <h1>Recuperação de Senha</h1>
           <p>Clique no link abaixo para redefinir sua senha:</p>
           <a href="${resetLink}">${resetLink}</a>
-          <p>Este link expira em 30 minutos.</p>
+          <p>Este link expira em 10 minutos.</p>
         `,
       });
     } catch (error) {

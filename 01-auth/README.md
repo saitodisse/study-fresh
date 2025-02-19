@@ -1,6 +1,7 @@
 ## TODO
 
 - [x] (01-auth\routes\bcrypt\forgot-password.tsx) Corrigir o envio de email
+- [ ] tentar mover o password-reset para dentro do usuário
 - [ ] Criar confirmação para verificar se o email é realmente válido
 
 ---
