@@ -71,53 +71,56 @@ export const handler: Handlers = {
 
 export default function SigninPage(props: PageProps) {
   const message = props.data?.message;
-
   return (
     <div class="px-4 py-8 mx-auto">
-      <div class="max-w-screen-md mx-auto flex flex-col">
-        <h1 class="text-2xl font-bold">Criar Conta</h1>
-        {message && <p class="mt-4 text-red-500">{message}</p>}
-        <form class="mt-4" method="POST">
-          <div class="mb-4">
-            <label class="block" htmlFor="username">Usuário:</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              class="mt-2 px-3 py-2 border rounded w-full bg-gray-800 text-white border-gray-600 focus:border-gray-500 focus:ring-gray-500"
-              required
-            />
-          </div>
-          <div class="mb-4">
-            <label class="block" htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="mt-2 px-3 py-2 border rounded w-full bg-gray-800 text-white border-gray-600 focus:border-gray-500 focus:ring-gray-500"
-              required
-            />
-          </div>
-          <div class="mb-4">
-            <label class="block" htmlFor="password">Senha:</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              class="mt-2 px-3 py-2 border rounded w-full bg-gray-800 text-white border-gray-600 focus:border-gray-500 focus:ring-gray-500"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-          >
-            Criar Conta
-          </button>
-          <a href="/login" class="ml-4 text-blue-500 hover:underline">
-            Já tem uma conta? Faça login
-          </a>
-        </form>
+      <div className="p-4 bg-gray-800 rounded-xl shadow-lg">
+        <div class="max-w-screen-md mx-auto flex flex-col">
+          <h1 class="text-2xl font-bold text-white">Criar Conta</h1>
+          {message && <p class="mt-4 text-red-400">{message}</p>}
+          <form class="mt-4" method="POST">
+            <div class="mb-4">
+              <label class="block text-white" htmlFor="username">
+                Usuário:
+              </label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                class="mt-2 px-3 py-2 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-white" htmlFor="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="mt-2 px-3 py-2 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-white" htmlFor="password">Senha:</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="mt-2 px-3 py-2 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            >
+              Criar Conta
+            </button>
+            <a href="/login" class="ml-4 text-blue-300 hover:underline">
+              Já tem uma conta? Faça login
+            </a>
+          </form>
+        </div>
       </div>
     </div>
   );

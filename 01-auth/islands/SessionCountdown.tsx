@@ -33,7 +33,7 @@ export default function SessionCountdown(props: SessionCountdownProps) {
       const remaining = Math.max(0, props.exp - Date.now());
       setTimeLeft(remaining);
       if (remaining <= 0) {
-        window.location.href = "/api/logout";
+        window.location.href = "/";
       }
     };
 
@@ -53,7 +53,11 @@ export default function SessionCountdown(props: SessionCountdownProps) {
 
   return (
     <div class="text-center mt-2">
-      <p class={`text-lg font-semibold ${timeLeft <= 0 ? "text-red-500" : ""}`}>
+      <p
+        class={`text-lg font-semibold ${
+          timeLeft <= 0 ? "text-red-400" : "text-white"
+        }`}
+      >
         Session {timeLeft > 0 ? "expires in: " : ""}
         {formatTime(timeLeft)}
       </p>

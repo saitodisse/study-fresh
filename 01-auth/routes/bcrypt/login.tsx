@@ -86,73 +86,68 @@ export const handler: Handlers = {
 
 export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
   const url = new URL(pageProps.url);
-  const queryMessage = url.searchParams.get("message")!;
-
-  console.log("data", pageProps.data);
-  console.log("state", pageProps.state);
-
   if (pageProps.data?.goto) {
     return new Response(null, {
       status: 307,
       headers: { Location: pageProps.data.goto },
     });
   }
-
   return (
     <div class="px-4 py-8 mx-auto">
-      <div class="max-w-screen-md mx-auto flex flex-col">
-        <h1 class="text-2xl font-bold">Login</h1>
-
-        {pageProps.data?.message && (
-          <p class="mt-4 text-red-500">{pageProps.data.message}</p>
-        )}
-
-        <form class="mt-4" method="POST">
-          <div>
-            <label class="block" htmlFor="username">
-              Usuário ou Email:
-            </label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Digite seu usuário ou email"
-              class="mt-2 px-3 py-2 border rounded bg-slate-700"
-            />
+      <div className="p-4 bg-gray-800 rounded-xl shadow-lg">
+        <div class="max-w-screen-md mx-auto flex flex-col">
+          <h1 class="text-2xl font-bold text-white">Login</h1>
+          {pageProps.data?.message && (
+            <p class="mt-4 text-red-400">{pageProps.data.message}</p>
+          )}
+          <form class="mt-4" method="POST">
+            <div>
+              <label class="block text-white" htmlFor="username">
+                Usuário ou Email:
+              </label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Digite seu usuário ou email"
+                class="mt-2 px-3 py-2 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+              />
+            </div>
+            <div class="mt-4">
+              <label class="block text-white" htmlFor="password">
+                Senha:
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="mt-2 px-3 py-2 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+              />
+            </div>
+            <button
+              type="submit"
+              class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            >
+              Entrar
+            </button>
+          </form>
+          <div class="mt-4 flex justify-between">
+            <a
+              href="/bcrypt/forgot-password"
+              class="text-blue-300 hover:underline"
+            >
+              Esqueceu sua senha?
+            </a>
+            <a
+              href="/bcrypt/signin"
+              class="text-blue-300 hover:underline"
+            >
+              Criar nova conta
+            </a>
           </div>
-          <div class="mt-4">
-            <label class="block" htmlFor="password">
-              Senha:
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              class="mt-2 px-3 py-2 border rounded bg-slate-700"
-            />
+          <div id="loading" class="hidden mt-4 text-center text-white">
+            Autenticando...
           </div>
-          <button
-            type="submit"
-            class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Entrar
-          </button>
-        </form>
-
-        <div class="mt-4 flex justify-between">
-          <a
-            href="/bcrypt/forgot-password"
-            class="text-blue-500 hover:underline"
-          >
-            Esqueceu sua senha?
-          </a>
-          <a href="/bcrypt/signin" class="text-blue-500 hover:underline">
-            Criar nova conta
-          </a>
-        </div>
-
-        <div id="loading" class="hidden mt-4 text-center">
-          Autenticando...
         </div>
       </div>
     </div>

@@ -82,39 +82,40 @@ export const handler: Handlers = {
 export default function ForgotPasswordPage(props: PageProps) {
   const message = props.data?.message;
   const isError = props.data?.error;
-
   return (
     <div class="px-4 py-8 mx-auto">
-      <div class="max-w-screen-md mx-auto flex flex-col">
-        <h1 class="text-2xl font-bold">Recuperar Senha</h1>
-        {message && (
-          <p class={`mt-4 ${isError ? "text-red-500" : "text-green-500"}`}>
-            {message}
-          </p>
-        )}
-        <form class="mt-4" method="POST">
-          <div class="mb-4">
-            <label class="block" htmlFor="username">
-              Usuário:
-            </label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              class="mt-2 px-3 py-2 border rounded w-full bg-gray-800 text-white border-gray-600 focus:border-gray-500 focus:ring-gray-500"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Recuperar Senha
-          </button>
-          <a href="/login" class="ml-4 text-blue-500 hover:underline">
-            Voltar ao login
-          </a>
-        </form>
+      <div className="p-4 bg-gray-800 rounded-xl shadow-lg">
+        <div class="max-w-screen-md mx-auto flex flex-col">
+          <h1 class="text-2xl font-bold text-white">Recuperar Senha</h1>
+          {message && (
+            <p class={`mt-4 ${isError ? "text-red-400" : "text-green-400"}`}>
+              {message}
+            </p>
+          )}
+          <form class="mt-4" method="POST">
+            <div class="mb-4">
+              <label class="block text-white" htmlFor="username">
+                Usuário:
+              </label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                class="mt-2 px-3 py-2 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            >
+              Recuperar Senha
+            </button>
+            <a href="/login" class="ml-4 text-blue-300 hover:underline">
+              Voltar ao login
+            </a>
+          </form>
+        </div>
       </div>
     </div>
   );

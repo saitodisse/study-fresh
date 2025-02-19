@@ -106,33 +106,35 @@ export default function ResetPasswordPage(props: PageProps) {
 
   return (
     <div class="px-4 py-8 mx-auto">
-      <div class="max-w-screen-md mx-auto flex flex-col">
-        <h1 class="text-2xl font-bold">Redefinir Senha</h1>
-        {message && (
-          <p class={`mt-4 ${isError ? "text-red-500" : "text-green-500"}`}>
-            {message}
-          </p>
-        )}
-        <form class="mt-4" method="POST">
-          <div class="mb-4">
-            <label class="block" htmlFor="password">
-              Nova Senha:
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              class="mt-2 px-3 py-2 border rounded w-full bg-gray-800 text-white border-gray-600 focus:border-gray-500 focus:ring-gray-500"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-          >
-            Atualizar Senha
-          </button>
-        </form>
+      <div className="p-4 bg-gray-800 rounded-xl shadow-lg">
+        <div class="max-w-screen-md mx-auto flex flex-col">
+          <h1 class="text-2xl font-bold text-white">Redefinir Senha</h1>
+          {message && (
+            <p class={`mt-4 ${isError ? "text-red-400" : "text-green-400"}`}>
+              {message}
+            </p>
+          )}
+          <form class="mt-4" method="POST">
+            <div class="mb-4">
+              <label class="block text-white" htmlFor="password">
+                Nova Senha:
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="mt-2 px-3 py-2 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            >
+              Atualizar Senha
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
