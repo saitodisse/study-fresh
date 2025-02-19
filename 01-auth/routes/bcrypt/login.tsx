@@ -109,8 +109,8 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
                 type="text"
                 id="username"
                 name="username"
-                placeholder="Digite seu usuário ou email"
-                class="mt-2 px-4 py-3 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+                placeholder="usuário ou email"
+                class="text-3xl mt-2 px-4 py-3 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
               />
             </div>
             <div class="mt-6">
@@ -121,7 +121,8 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
                 type="password"
                 id="password"
                 name="password"
-                class="mt-2 px-4 py-3 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+                placeholder="****"
+                class="text-3xl mt-2 px-4 py-3 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
               />
             </div>
             <button
