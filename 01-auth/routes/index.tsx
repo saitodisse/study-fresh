@@ -1,8 +1,8 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { getCookies } from "$std/http/cookie.ts";
 import { Data } from "./model/Data.ts";
-import SessionCountdown from "../islands/SessionCountdown.tsx";
-import MyIsland from "../islands/MyIsland.tsx";
+import SessionCountdownIsland from "../islands/SessionCountdownIsland.tsx";
+import MyCounterIsland from "../islands/MyCounterIsland.tsx";
 
 export const handler: Handlers = {
   GET(req, ctx) {
@@ -31,13 +31,21 @@ export default function Home({ data }: PageProps<Data>) {
               : "Você não está autenticado!"}
           </p>
           {data.isAllowed && data.session_exp && (
-            <div class="my-8 flex flex-row items-center space-x-8">
-              <p class="text-3xl text-white">
-                value: {data.session_value}, exp:{" "}
-                {new Date(Number(data.session_exp)).toLocaleString()}
+            <div class="font-mono text-white my-8 flex flex-col items-center justify-center space-x-8">
+              <p>
+                sessão: {data.session_value}
               </p>
-              <SessionCountdown exp={Number(data.session_exp)} />
-              <MyIsland />
+              <p>
+                expira em: {new Date(Number(data.session_exp)).toLocaleString()}
+              </p>
+              <SessionCountdownIsland exp={Number(data.session_exp)} />
+              <MyCounterIsland />
+              <a
+                className="underline text-blue-300 text-3xl"
+                href="/db/list-all"
+              >
+                Listagens, banco de dados
+              </a>
             </div>
           )}
           {!data.isAllowed
@@ -54,12 +62,6 @@ export default function Home({ data }: PageProps<Data>) {
                   href="/bcrypt/signin"
                 >
                   Criar conta (bcrypt + Deno KV)
-                </a>
-                <a
-                  className="underline text-blue-300 text-3xl"
-                  href="/db/list-all"
-                >
-                  Listagens, banco de dados
                 </a>
               </div>
             )

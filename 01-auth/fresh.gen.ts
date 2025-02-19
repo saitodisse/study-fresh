@@ -17,8 +17,8 @@ import * as $docs_03_cookies from "./routes/docs/03-cookies.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $model_Data from "./routes/model/Data.ts";
 import * as $model_User from "./routes/model/User.ts";
-import * as $MyIsland from "./islands/MyIsland.tsx";
-import * as $SessionCountdown from "./islands/SessionCountdown.tsx";
+import * as $MyCounterIsland from "./islands/MyCounterIsland.tsx";
+import * as $SessionCountdownIsland from "./islands/SessionCountdownIsland.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -41,8 +41,8 @@ const manifest = {
     "./routes/model/User.ts": $model_User,
   },
   islands: {
-    "./islands/MyIsland.tsx": $MyIsland,
-    "./islands/SessionCountdown.tsx": $SessionCountdown,
+    "./islands/MyCounterIsland.tsx": $MyCounterIsland,
+    "./islands/SessionCountdownIsland.tsx": $SessionCountdownIsland,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

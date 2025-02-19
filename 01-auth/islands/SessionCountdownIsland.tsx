@@ -1,8 +1,9 @@
 // islands/SessionCountdown.tsx
 import { useEffect, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
+import { DevBorder } from "../components/DevBorder.tsx";
 
-interface SessionCountdownProps {
+interface SessionCountdownIslandProps {
   exp: number; // expiration timestamp in milliseconds
 }
 
@@ -14,13 +15,15 @@ const formatTime = (milliseconds: number) => {
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 };
 
-export default function SessionCountdown(props: SessionCountdownProps) {
+export default function SessionCountdownIsland(
+  props: SessionCountdownIslandProps,
+) {
   // If not in the browser, render a static version to avoid hydration issues
   if (!IS_BROWSER) {
     return (
-      <div class="text-center mt-2">
+      <div class="text-center mt-2 p-4">
         <p class="text-lg font-semibold">
-          Session expires in: {formatTime(props.exp - Date.now())}
+          Cookie expira em: {formatTime(props.exp - Date.now())}
         </p>
       </div>
     );
@@ -52,15 +55,17 @@ export default function SessionCountdown(props: SessionCountdownProps) {
   }, []);
 
   return (
-    <div class="text-center mt-4">
-      <p
-        class={`text-4xl font-semibold ${
-          timeLeft <= 0 ? "text-red-400" : "text-white"
-        }`}
-      >
-        Session {timeLeft > 0 ? "expires in: " : ""}
-        {formatTime(timeLeft)}
-      </p>
-    </div>
+    <DevBorder componentName="SessionCountdownIsland">
+      <div class="text-center mt-4 pb-4">
+        <p
+          class={`text-4xl font-semibold ${
+            timeLeft <= 0 ? "text-red-400" : "text-white"
+          }`}
+        >
+          Cookie {timeLeft > 0 ? "expira em: " : ""}
+          {formatTime(timeLeft)}
+        </p>
+      </div>
+    </DevBorder>
   );
 }
