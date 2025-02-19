@@ -10,6 +10,9 @@ import {
   INPUT_CLASSES,
   LINK_CLASSES,
 } from "../../utils/styles.ts";
+import { FormInput } from "../../components/FormInput.tsx";
+import { PrimaryButton } from "../../components/PrimaryButton.tsx";
+import { PrimaryLink } from "../../components/PrimaryLink.tsx";
 
 /**
  * Signin page
@@ -126,54 +129,33 @@ export default function SigninPage(props: PageProps) {
       <h1 class="text-4xl font-bold text-white">Criar Conta</h1>
       {message && <p class={`mt-4 text-2xl ${messageClass}`}>{message}</p>}
       <form class="mt-6" method="POST">
-        <div class="mb-6">
-          <label class="block text-white" htmlFor="username">
-            Usuário:
-          </label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            class={INPUT_CLASSES}
-            required
-          />
+        <FormInput
+          label="Usuário:"
+          type="text"
+          id="username"
+          name="username"
+          required
+        />
+        <FormInput
+          label="Email:"
+          type="email"
+          id="email"
+          name="email"
+          required
+        />
+        <FormInput
+          label="Senha:"
+          type="password"
+          id="password"
+          name="password"
+          required
+        />
+        <PrimaryButton type="submit">Criar Conta</PrimaryButton>
+        <div className="block my-6">
+          <PrimaryLink href="/bcrypt/login">
+            Já tem uma conta? Faça login agora
+          </PrimaryLink>
         </div>
-        <div class="mb-6">
-          <label class="block text-white text-2xl" htmlFor="email">
-            Email:
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class={INPUT_CLASSES}
-            required
-          />
-        </div>
-        <div class="mb-6">
-          <label class="block text-white text-2xl" htmlFor="password">
-            Senha:
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class={INPUT_CLASSES}
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          class={BUTTON_CLASSES}
-        >
-          Criar Conta
-        </button>
-        <a
-          href="/bcrypt/login"
-          class={LINK_CLASSES}
-        >
-          Já tem uma conta? Faça login agora
-        </a>
       </form>
     </>
   );

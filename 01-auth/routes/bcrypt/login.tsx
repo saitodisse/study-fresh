@@ -8,6 +8,9 @@ import {
   INPUT_CLASSES,
   LINK_CLASSES,
 } from "../../utils/styles.ts";
+import { FormInput } from "../../components/FormInput.tsx";
+import { PrimaryButton } from "../../components/PrimaryButton.tsx";
+import { PrimaryLink } from "../../components/PrimaryLink.tsx";
 
 type LoginPageProps = {
   message?: string;
@@ -115,36 +118,29 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
         <p class="mt-4 text-red-400 text-2xl">{pageProps.data.message}</p>
       )}
       <form class="mt-6" method="POST">
-        <div>
-          <label class="block text-white" htmlFor="username">
-            Usuário ou Email:
-          </label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            class={INPUT_CLASSES}
-          />
-        </div>
-        <div class="mt-6">
-          <label class="block text-white" htmlFor="password">Senha:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class={INPUT_CLASSES}
-          />
-        </div>
-        <button type="submit" class={BUTTON_CLASSES}>Entrar</button>
+        <FormInput
+          label="Usuário ou Email:"
+          type="text"
+          id="username"
+          name="username"
+          required
+        />
+        <FormInput
+          label="Senha:"
+          type="password"
+          id="password"
+          name="password"
+          required
+        />
+        <PrimaryButton type="submit">Entrar</PrimaryButton>
       </form>
       <div class="mt-6 flex justify-between">
-        <a href="/bcrypt/forgot-password" class={LINK_CLASSES}>
+        <PrimaryLink href="/bcrypt/forgot-password">
           Esqueceu sua senha?
-        </a>
-        <a href="/bcrypt/signin" class={LINK_CLASSES}>Criar nova conta</a>
-      </div>
-      <div id="loading" class="hidden mt-4 text-center text-white text-2xl">
-        Autenticando...
+        </PrimaryLink>
+        <PrimaryLink href="/bcrypt/signin">
+          Criar nova conta
+        </PrimaryLink>
       </div>
     </>
   );

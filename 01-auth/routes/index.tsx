@@ -3,6 +3,7 @@ import { getCookies } from "$std/http/cookie.ts";
 import { Data } from "./model/Data.ts";
 import SessionCountdownIsland from "../islands/SessionCountdownIsland.tsx";
 import MyCounterIsland from "../islands/MyCounterIsland.tsx";
+import { PrimaryLink } from "../components/PrimaryLink.tsx";
 
 export const handler: Handlers = {
   GET(req, ctx) {
@@ -49,57 +50,34 @@ export default function Home({ data }: PageProps<Data>) {
       {!data.isAllowed
         ? (
           <div className="flex flex-col space-y-6">
-            <h1 class="mt-32 mb-1 text-2xl font-bold text-white">
-              bcrypt
-            </h1>
-
-            <a
-              className="underline text-blue-300 text-2xl"
-              href="/bcrypt/login"
-            >
+            <h1 class="mb-1 text-2xl font-bold text-white">bcrypt</h1>
+            <PrimaryLink href="/bcrypt/login">
               Login (bcrypt + Deno KV)
-            </a>
-            <a
-              className="underline text-blue-300 text-2xl"
-              href="/bcrypt/signin"
-            >
+            </PrimaryLink>
+            <PrimaryLink href="/bcrypt/signin">
               Criar conta (bcrypt + Deno KV)
-            </a>
+            </PrimaryLink>
           </div>
         )
         : (
-          <a
-            className="underline text-yellow-300 text-2xl"
-            href="/bcrypt/logout"
-          >
+          <PrimaryLink href="/bcrypt/logout" className="text-yellow-300">
             Logout
-          </a>
+          </PrimaryLink>
         )}
-      <h1 class="mt-32 mb-1 text-base font-bold text-white">explicações</h1>
+
+      <hr class="my-8 border-gray-700" />
+      <h1 class="mb-1 text-base font-bold text-slate-400">Entenda um login</h1>
       <ul class="space-y-1">
         <li>
-          <a
-            href="/docs/01-understanding-auth"
-            className="underline hover:text-gray-300 "
-          >
+          <PrimaryLink href="/docs/01-understanding-auth">
             Autenticação vs Autorização
-          </a>
+          </PrimaryLink>
         </li>
         <li>
-          <a
-            href="/docs/02-sessions"
-            className="underline hover:text-gray-300 "
-          >
-            Sessões
-          </a>
+          <PrimaryLink href="/docs/02-sessions">Sessões</PrimaryLink>
         </li>
         <li>
-          <a
-            href="/docs/03-cookies"
-            className="underline hover:text-gray-300 "
-          >
-            Cookies
-          </a>
+          <PrimaryLink href="/docs/03-cookies">Cookies</PrimaryLink>
         </li>
       </ul>
     </>

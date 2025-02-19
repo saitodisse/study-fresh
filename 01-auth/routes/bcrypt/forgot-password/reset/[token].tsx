@@ -3,6 +3,8 @@ import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 import { PasswordReset } from "../../../../types/PasswordReset.tsx";
 import { User } from "../../../model/User.ts";
 import { BUTTON_CLASSES, INPUT_CLASSES } from "../../../../utils/styles.ts";
+import { FormInput } from "../../../../components/FormInput.tsx";
+import { PrimaryButton } from "../../../../components/PrimaryButton.tsx";
 
 export const handler: Handlers = {
   async POST(req, ctx) {
@@ -119,24 +121,16 @@ export default function ResetPasswordPage(props: PageProps) {
             </p>
           )}
           <form class="mt-6" method="POST">
-            <div class="mb-6">
-              <label class="block text-white" htmlFor="password">
-                Nova Senha:
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                class={INPUT_CLASSES}
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              class={BUTTON_CLASSES}
-            >
+            <FormInput
+              label="Nova Senha:"
+              type="password"
+              id="password"
+              name="password"
+              required
+            />
+            <PrimaryButton type="submit">
               Atualizar Senha
-            </button>
+            </PrimaryButton>
           </form>
         </div>
       </div>

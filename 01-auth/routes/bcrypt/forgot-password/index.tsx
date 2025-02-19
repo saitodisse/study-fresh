@@ -7,6 +7,9 @@ import {
   INPUT_CLASSES,
   LINK_CLASSES,
 } from "../../../utils/styles.ts";
+import { FormInput } from "../../../components/FormInput.tsx";
+import { PrimaryButton } from "../../../components/PrimaryButton.tsx";
+import { PrimaryLink } from "../../../components/PrimaryLink.tsx";
 
 export const handler: Handlers = {
   async POST(req, _ctx) {
@@ -98,30 +101,21 @@ export default function ForgotPasswordPage(props: PageProps) {
         </p>
       )}
       <form class="mt-6" method="POST">
-        <div class="mb-6">
-          <label class="block text-white text-2xl" htmlFor="username">
-            Usuário:
-          </label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            class={INPUT_CLASSES}
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          class={BUTTON_CLASSES}
-        >
+        <FormInput
+          label="Usuário:"
+          type="text"
+          id="username"
+          name="username"
+          required
+        />
+        <PrimaryButton type="submit">
           Recuperar Senha
-        </button>
-        <a
-          href="/bcrypt/login"
-          class={LINK_CLASSES}
-        >
-          Voltar ao login
-        </a>
+        </PrimaryButton>
+        <div className="block my-6">
+          <PrimaryLink href="/bcrypt/login">
+            Voltar ao login
+          </PrimaryLink>
+        </div>
       </form>
     </>
   );
