@@ -21,6 +21,7 @@ export const handler: Handlers = {
     if (!username || !email || !password) {
       const searchParams = new URLSearchParams();
       searchParams.set("message", "Usuário, email e senha são obrigatórios!");
+      searchParams.set("message_type", "error");
       return Response.redirect(`/signin?${searchParams.toString()}`);
     }
 
@@ -32,6 +33,7 @@ export const handler: Handlers = {
       return _ctx.render!({
         message:
           "Usuário já cadastrado. Favor escolher outro username ou fazer login.",
+        message_type: "error",
       });
     }
 
@@ -74,6 +76,7 @@ export const handler: Handlers = {
         "message",
         "Erro ao criar usuário. Tente novamente.",
       );
+      searchParams.set("message_type", "error");
       return Response.redirect(`/signin?${searchParams.toString()}`);
     }
 
@@ -100,18 +103,25 @@ export const handler: Handlers = {
     return _ctx.render!({
       message:
         "Conta criada com sucesso! Por favor, verifique seu email para ativar sua conta.",
+      message_type: "success",
     });
   },
 };
 
 export default function SigninPage(props: PageProps) {
   const message = props.data?.message;
+  const messageType = props.data?.message_type ||
+    new URL(props.url).searchParams.get("message_type");
+  const messageClass = messageType === "error"
+    ? "text-red-400"
+    : "text-green-400";
+
   return (
     <div class="px-8 py-8 mx-auto">
       <div className="p-8 bg-gray-900 rounded-2xl shadow-2xl">
         <div class="max-w-screen-md mx-auto flex flex-col">
           <h1 class="text-4xl font-bold text-white">Criar Conta</h1>
-          {message && <p class="mt-4 text-red-400 text-2xl">{message}</p>}
+          {message && <p class={`mt-4 text-2xl ${messageClass}`}>{message}</p>}
           <form class="mt-6" method="POST">
             <div class="mb-6">
               <label class="block text-white " htmlFor="username">
