@@ -2,6 +2,11 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { sendEmail } from "../../../utils/email.ts";
 import { User } from "../../model/User.ts";
 import { PasswordReset } from "../../../types/PasswordReset.tsx";
+import {
+  BUTTON_CLASSES,
+  INPUT_CLASSES,
+  LINK_CLASSES,
+} from "../../../utils/styles.ts";
 
 export const handler: Handlers = {
   async POST(req, _ctx) {
@@ -101,19 +106,19 @@ export default function ForgotPasswordPage(props: PageProps) {
             type="text"
             id="username"
             name="username"
-            class="mt-2 text-2xl px-4 py-3 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+            class={INPUT_CLASSES}
             required
           />
         </div>
         <button
           type="submit"
-          class="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-2xl"
+          class={BUTTON_CLASSES}
         >
           Recuperar Senha
         </button>
         <a
           href="/bcrypt/login"
-          class="ml-6 text-blue-300 hover:underline text-2xl"
+          class={LINK_CLASSES}
         >
           Voltar ao login
         </a>

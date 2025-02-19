@@ -2,6 +2,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 import { PasswordReset } from "../../../../types/PasswordReset.tsx";
 import { User } from "../../../model/User.ts";
+import { BUTTON_CLASSES, INPUT_CLASSES } from "../../../../utils/styles.ts";
 
 export const handler: Handlers = {
   async POST(req, ctx) {
@@ -105,7 +106,7 @@ export default function ResetPasswordPage(props: PageProps) {
   const isError = props.data?.error;
   return (
     <div class="px-8 py-8 mx-auto">
-      <div className="p-8 bg-gray-900 rounded-2xl shadow-2xl">
+      <div class="p-8 bg-gray-900 rounded-2xl shadow-2xl">
         <div class="max-w-screen-md mx-auto flex flex-col">
           <h1 class="text-4xl font-bold text-white">Redefinir Senha</h1>
           {message && (
@@ -119,20 +120,20 @@ export default function ResetPasswordPage(props: PageProps) {
           )}
           <form class="mt-6" method="POST">
             <div class="mb-6">
-              <label class="block text-white text-2xl" htmlFor="password">
+              <label class="block text-white" htmlFor="password">
                 Nova Senha:
               </label>
               <input
                 type="password"
                 id="password"
                 name="password"
-                class="mt-2 px-4 py-3 border rounded w-full bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+                class={INPUT_CLASSES}
                 required
               />
             </div>
             <button
               type="submit"
-              class="px-6 py-3 bg-green-600 text-white rounded hover:bg-green-700 text-2xl"
+              class={BUTTON_CLASSES}
             >
               Atualizar Senha
             </button>

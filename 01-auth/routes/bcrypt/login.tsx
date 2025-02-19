@@ -3,6 +3,11 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { setCookie } from "$std/http/cookie.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 import { User } from "../model/User.ts";
+import {
+  BUTTON_CLASSES,
+  INPUT_CLASSES,
+  LINK_CLASSES,
+} from "../../utils/styles.ts";
 
 type LoginPageProps = {
   message?: string;
@@ -111,49 +116,32 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
       )}
       <form class="mt-6" method="POST">
         <div>
-          <label class="block text-white text-2xl" htmlFor="username">
+          <label class="block text-white" htmlFor="username">
             Usuário ou Email:
           </label>
           <input
             type="text"
             id="username"
             name="username"
-            placeholder="usuário ou email"
-            class="text-2xl mt-2 px-4 py-3 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+            class={INPUT_CLASSES}
           />
         </div>
         <div class="mt-6">
-          <label class="block text-white text-2xl" htmlFor="password">
-            Senha:
-          </label>
+          <label class="block text-white" htmlFor="password">Senha:</label>
           <input
             type="password"
             id="password"
             name="password"
-            placeholder="****"
-            class="text-2xl mt-2 px-4 py-3 border rounded bg-gray-700 text-white border-gray-600 focus:border-gray-500 focus:ring"
+            class={INPUT_CLASSES}
           />
         </div>
-        <button
-          type="submit"
-          class="mt-6 px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 text-2xl"
-        >
-          Entrar
-        </button>
+        <button type="submit" class={BUTTON_CLASSES}>Entrar</button>
       </form>
       <div class="mt-6 flex justify-between">
-        <a
-          href="/bcrypt/forgot-password"
-          class="text-blue-300 hover:underline text-2xl"
-        >
+        <a href="/bcrypt/forgot-password" class={LINK_CLASSES}>
           Esqueceu sua senha?
         </a>
-        <a
-          href="/bcrypt/signin"
-          class="text-blue-300 hover:underline text-2xl"
-        >
-          Criar nova conta
-        </a>
+        <a href="/bcrypt/signin" class={LINK_CLASSES}>Criar nova conta</a>
       </div>
       <div id="loading" class="hidden mt-4 text-center text-white text-2xl">
         Autenticando...

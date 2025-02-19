@@ -1,17 +1,13 @@
 export default function HeaderMenu() {
   return (
-    <header className="bg-[#442179] shadow-lg">
-      <nav className="container mx-auto px-4 py-3">
-        <ul className="flex space-x-6 justify-between">
-          <li>
-            <a href="/" className="text-white hover:text-gray-300">Índice</a>
-          </li>
-          <li>
-            <a href="/bcrypt/login" className="text-white hover:text-gray-300">
-              Login
-            </a>
-          </li>
-        </ul>
+    <header className="bg-blue-900 shadow-lg">
+      <nav className="max-w-screen-lg mx-auto px-4 py-3">
+        <a
+          href="/"
+          className="text-white hover:text-blue-200 text-xl font-semibold"
+        >
+          Home
+        </a>
       </nav>
     </header>
   );
