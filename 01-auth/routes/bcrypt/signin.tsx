@@ -2,6 +2,9 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { setCookie } from "$std/http/cookie.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
+import { sendEmail } from "../../utils/email.ts";
+import { EmailVerification } from "../../types/EmailVerification.ts";
+import { User } from "../model/User.ts";
 
 /**
  * Signin page
@@ -32,39 +35,69 @@ export const handler: Handlers = {
       });
     }
 
-    // Create new user
+    // Create new user with verified status
     const passwordHash = await bcrypt.hash(password);
     const user: User = {
       username,
       email,
       password: passwordHash,
       createdAt: new Date(),
+      verified: false,
     };
 
-    // Save user to database
-    const result = await kv.set(["users", username], user);
+    // Generate verification token
+    const token = crypto.randomUUID();
+    const expiresAt = new Date(Date.now() + 1000 * 60 * 60 * 24); // 24 hours
 
-    if (!result.ok) {
+    const verificationData: EmailVerification = {
+      username,
+      email,
+      token,
+      expiresAt,
+    };
+
+    // Save user and verification data
+    const userKey = ["users", username];
+    const verificationKey = ["email_verification", token];
+
+    const transaction = await kv.atomic()
+      .check({ key: userKey, versionstamp: null }) // Check if user doesn't exist
+      .set(userKey, user)
+      .set(verificationKey, verificationData)
+      .commit();
+
+    if (!transaction.ok) {
       const searchParams = new URLSearchParams();
-      searchParams.set("message", "Erro ao criar usuário. Tente novamente.");
+      searchParams.set(
+        "message",
+        "Erro ao criar usuário. O usuário já existe ou ocorreu um erro.",
+      );
       return Response.redirect(`/signin?${searchParams.toString()}`);
     }
 
-    // Set authentication cookie
-    const headers = new Headers();
-    setCookie(headers, {
-      name: "auth",
-      value: Math.random().toString(36).slice(2),
-      path: "/",
-      secure: true,
-      sameSite: "Lax",
-      expires: new Date(Date.now() + 1000 * 5), // 5 seconds
-    });
+    // Send verification email
+    const verificationLink = `${
+      req.url.replace("/signin", "/verify")
+    }/${token}`;
+    try {
+      await sendEmail({
+        to: email,
+        subject: "Verificação de Email",
+        html: `
+          <h1>Verificação de Email</h1>
+          <p>Olá ${username},</p>
+          <p>Por favor, clique no link abaixo para verificar seu email:</p>
+          <a href="${verificationLink}">${verificationLink}</a>
+          <p>Este link expira em 24 horas.</p>
+        `,
+      });
+    } catch (error) {
+      console.error("Erro ao enviar email:", error);
+    }
 
-    headers.set("location", "/");
-    return new Response(null, {
-      status: 303,
-      headers,
+    return _ctx.render!({
+      message:
+        "Conta criada com sucesso! Por favor, verifique seu email para ativar sua conta.",
     });
   },
 };

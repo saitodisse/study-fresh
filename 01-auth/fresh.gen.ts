@@ -9,6 +9,7 @@ import * as $bcrypt_forgot_password_reset_token_ from "./routes/bcrypt/forgot-pa
 import * as $bcrypt_login from "./routes/bcrypt/login.tsx";
 import * as $bcrypt_logout from "./routes/bcrypt/logout.tsx";
 import * as $bcrypt_signin from "./routes/bcrypt/signin.tsx";
+import * as $bcrypt_verify_token_ from "./routes/bcrypt/verify/[token].tsx";
 import * as $db_delete from "./routes/db/delete.tsx";
 import * as $db_list_all from "./routes/db/list-all.tsx";
 import * as $docs_01_understanding_auth from "./routes/docs/01-understanding-auth.tsx";
@@ -31,6 +32,7 @@ const manifest = {
     "./routes/bcrypt/login.tsx": $bcrypt_login,
     "./routes/bcrypt/logout.tsx": $bcrypt_logout,
     "./routes/bcrypt/signin.tsx": $bcrypt_signin,
+    "./routes/bcrypt/verify/[token].tsx": $bcrypt_verify_token_,
     "./routes/db/delete.tsx": $db_delete,
     "./routes/db/list-all.tsx": $db_list_all,
     "./routes/docs/01-understanding-auth.tsx": $docs_01_understanding_auth,

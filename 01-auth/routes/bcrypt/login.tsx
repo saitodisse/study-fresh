@@ -36,6 +36,17 @@ export const handler: Handlers = {
       }
     }
 
+    if (!userResult.value) {
+      return _ctx.render!({ message: "Usuário não encontrado!" });
+    }
+
+    // Check if email is verified
+    if (!userResult.value.verified) {
+      return _ctx.render!({
+        message: "Por favor, verifique seu email antes de fazer login.",
+      });
+    }
+
     const validHash = userResult.value?.password;
 
     if (!validHash) {
