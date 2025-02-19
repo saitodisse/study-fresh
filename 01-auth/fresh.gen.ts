@@ -20,6 +20,7 @@ import * as $model_Data from "./routes/model/Data.ts";
 import * as $model_User from "./routes/model/User.ts";
 import * as $MyCounterIsland from "./islands/MyCounterIsland.tsx";
 import * as $SessionCountdownIsland from "./islands/SessionCountdownIsland.tsx";
+import * as $SubmitButtonIsland from "./islands/SubmitButtonIsland.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -45,6 +46,7 @@ const manifest = {
   islands: {
     "./islands/MyCounterIsland.tsx": $MyCounterIsland,
     "./islands/SessionCountdownIsland.tsx": $SessionCountdownIsland,
+    "./islands/SubmitButtonIsland.tsx": $SubmitButtonIsland,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

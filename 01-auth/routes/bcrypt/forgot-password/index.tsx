@@ -2,14 +2,9 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { sendEmail } from "../../../utils/email.ts";
 import { User } from "../../model/User.ts";
 import { PasswordReset } from "../../../types/PasswordReset.tsx";
-import {
-  BUTTON_CLASSES,
-  INPUT_CLASSES,
-  LINK_CLASSES,
-} from "../../../utils/styles.ts";
 import { FormInput } from "../../../components/FormInput.tsx";
-import { PrimaryButton } from "../../../components/PrimaryButton.tsx";
 import { PrimaryLink } from "../../../components/PrimaryLink.tsx";
+import SubmitButtonIsland from "../../../islands/SubmitButtonIsland.tsx";
 
 export const handler: Handlers = {
   async POST(req, _ctx) {
@@ -108,9 +103,7 @@ export default function ForgotPasswordPage(props: PageProps) {
           name="username"
           required
         />
-        <PrimaryButton type="submit">
-          Recuperar Senha
-        </PrimaryButton>
+        <SubmitButtonIsland text="Recuperar Senha" />
         <div className="block my-6">
           <PrimaryLink href="/bcrypt/login">
             Voltar ao login

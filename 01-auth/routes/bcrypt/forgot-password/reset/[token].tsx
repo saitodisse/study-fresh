@@ -2,7 +2,6 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 import { PasswordReset } from "../../../../types/PasswordReset.tsx";
 import { User } from "../../../model/User.ts";
-import { BUTTON_CLASSES, INPUT_CLASSES } from "../../../../utils/styles.ts";
 import { FormInput } from "../../../../components/FormInput.tsx";
 import { PrimaryButton } from "../../../../components/PrimaryButton.tsx";
 

@@ -1,18 +1,12 @@
 /// <reference lib="deno.unstable" />
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { setCookie } from "$std/http/cookie.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 import { sendEmail } from "../../utils/email.ts";
 import { EmailVerification } from "../../types/EmailVerification.ts";
 import { User } from "../model/User.ts";
-import {
-  BUTTON_CLASSES,
-  INPUT_CLASSES,
-  LINK_CLASSES,
-} from "../../utils/styles.ts";
 import { FormInput } from "../../components/FormInput.tsx";
-import { PrimaryButton } from "../../components/PrimaryButton.tsx";
 import { PrimaryLink } from "../../components/PrimaryLink.tsx";
+import SubmitButtonIsland from "../../islands/SubmitButtonIsland.tsx";
 
 /**
  * Signin page
@@ -150,7 +144,7 @@ export default function SigninPage(props: PageProps) {
           name="password"
           required
         />
-        <PrimaryButton type="submit">Criar Conta</PrimaryButton>
+        <SubmitButtonIsland text="Criar Conta" />
         <div className="block my-6">
           <PrimaryLink href="/bcrypt/login">
             Já tem uma conta? Faça login agora

@@ -1,12 +1,33 @@
 import { Handlers } from "$fresh/server.ts";
-import { setCookie } from "$std/http/cookie.ts";
+import { getCookies, setCookie } from "$std/http/cookie.ts";
+import { Session } from "../../types/Session.ts";
 
 export const handler: Handlers = {
-  GET(_req, _ctx) {
-    const headers = new Headers();
-    const pastDate = new Date(0); // Epoch time to expire cookies
+  async GET(req, _ctx) {
+    const cookies = getCookies(req.headers);
+    const sessionToken = cookies.auth;
 
-    // Clear "auth" cookie
+    const headers = new Headers();
+    const pastDate = new Date(0);
+
+    // Remove session from KV store if exists
+    if (sessionToken) {
+      const kv = await Deno.openKv(Deno.env.get("KV_STORE")!);
+
+      // Remove current session
+      await kv.delete(["sessions", sessionToken]);
+
+      // Clean expired sessions
+      const sessions = kv.list<Session>({ prefix: ["sessions"] });
+      const now = new Date();
+      for await (const entry of sessions) {
+        if (entry.value.expiresAt < now) {
+          await kv.delete(entry.key);
+        }
+      }
+    }
+
+    // Clear cookies
     setCookie(headers, {
       name: "auth",
       value: "",
@@ -14,7 +35,6 @@ export const handler: Handlers = {
       expires: pastDate,
     });
 
-    // Clear "exp" cookie
     setCookie(headers, {
       name: "exp",
       value: "",
@@ -22,10 +42,7 @@ export const handler: Handlers = {
       expires: pastDate,
     });
 
-    // Redirect to login page
     headers.set("location", "/bcrypt/login");
     return new Response(null, { status: 302, headers });
   },
 };
-
-// ...existing code if needed...

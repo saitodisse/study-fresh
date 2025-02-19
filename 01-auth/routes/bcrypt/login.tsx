@@ -3,14 +3,10 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { setCookie } from "$std/http/cookie.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 import { User } from "../model/User.ts";
-import {
-  BUTTON_CLASSES,
-  INPUT_CLASSES,
-  LINK_CLASSES,
-} from "../../utils/styles.ts";
 import { FormInput } from "../../components/FormInput.tsx";
-import { PrimaryButton } from "../../components/PrimaryButton.tsx";
 import { PrimaryLink } from "../../components/PrimaryLink.tsx";
+import { Session } from "../../types/Session.ts";
+import SubmitButtonIsland from "../../islands/SubmitButtonIsland.tsx";
 
 type LoginPageProps = {
   message?: string;
@@ -67,12 +63,33 @@ export const handler: Handlers = {
       return _ctx.render!({ message: "Senha inválida!" });
     }
 
+    // Clean expired sessions first
+    const sessions = kv.list<Session>({ prefix: ["sessions"] });
+    const now = new Date();
+    for await (const entry of sessions) {
+      if (entry.value.expiresAt < now) {
+        await kv.delete(entry.key);
+      }
+    }
+
+    // Generate session token and expiration
+    const sessionToken = Math.random().toString(36).slice(2);
+    const expiration_time = new Date(Date.now() + 1000 * 60); // 1 minute
+
+    // Save session in KV store
+    const session: Session = {
+      username: userResult.value.username,
+      token: sessionToken,
+      expiresAt: expiration_time,
+      createdAt: new Date(),
+    };
+    await kv.set(["sessions", sessionToken], session);
+
     // Salva o cookie de autenticação
     const headers = new Headers();
-    const expiration_time = new Date(Date.now() + 1000 * 60);
     setCookie(headers, {
       name: "auth",
-      value: Math.random().toString(36).slice(2),
+      value: sessionToken,
       path: "/",
       secure: true,
       sameSite: "Lax",
@@ -132,7 +149,7 @@ export default function LoginPage(pageProps: PageProps<LoginPageProps>) {
           name="password"
           required
         />
-        <PrimaryButton type="submit">Entrar</PrimaryButton>
+        <SubmitButtonIsland text="Entrar" />
       </form>
       <div class="mt-6 flex justify-between">
         <PrimaryLink href="/bcrypt/forgot-password">
