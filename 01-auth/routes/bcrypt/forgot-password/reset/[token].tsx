@@ -1,7 +1,7 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
-import { User } from "../../../api/types/User.ts";
 import { PasswordReset } from "../../../../types/PasswordReset.tsx";
+import { User } from "../../../model/User.ts";
 
 export const handler: Handlers = {
   async POST(req, ctx) {

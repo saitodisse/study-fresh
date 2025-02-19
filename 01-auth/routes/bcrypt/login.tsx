@@ -2,7 +2,7 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { setCookie } from "$std/http/cookie.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
-import { User } from "../api/types/User.ts";
+import { User } from "../model/User.ts";
 
 type LoginPageProps = {
   message?: string;

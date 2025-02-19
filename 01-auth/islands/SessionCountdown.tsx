@@ -45,6 +45,12 @@ export default function SessionCountdown(props: SessionCountdownProps) {
     return () => clearInterval(timer);
   }, [props.exp]);
 
+  // add useEffect to focus on the input when the component mounts
+  useEffect(() => {
+    const input = document.getElementById("username") as HTMLInputElement;
+    input.focus();
+  }, []);
+
   return (
     <div class="text-center mt-2">
       <p class={`text-lg font-semibold ${timeLeft <= 0 ? "text-red-500" : ""}`}>

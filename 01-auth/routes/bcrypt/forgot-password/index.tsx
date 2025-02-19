@@ -1,6 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { sendEmail } from "../../../utils/email.ts";
-import { User } from "../../api/types/User.ts";
+import { User } from "../../model/User.ts";
 import { PasswordReset } from "../../../types/PasswordReset.tsx";
 
 export const handler: Handlers = {

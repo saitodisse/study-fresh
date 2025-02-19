@@ -1,6 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { getCookies } from "$std/http/cookie.ts";
-import { Data } from "./Data.tsx";
+import { Data } from "./model/Data.ts";
 import SessionCountdown from "../islands/SessionCountdown.tsx";
 import MyIsland from "../islands/MyIsland.tsx";
 

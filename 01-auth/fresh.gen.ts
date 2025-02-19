@@ -2,12 +2,8 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $Data from "./routes/Data.tsx";
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $api_login from "./routes/api/login.ts";
-import * as $api_logout from "./routes/api/logout.ts";
-import * as $api_types_User from "./routes/api/types/User.ts";
 import * as $bcrypt_forgot_password_index from "./routes/bcrypt/forgot-password/index.tsx";
 import * as $bcrypt_forgot_password_reset_token_ from "./routes/bcrypt/forgot-password/reset/[token].tsx";
 import * as $bcrypt_login from "./routes/bcrypt/login.tsx";
@@ -18,18 +14,16 @@ import * as $docs_01_understanding_auth from "./routes/docs/01-understanding-aut
 import * as $docs_02_sessions from "./routes/docs/02-sessions.tsx";
 import * as $docs_03_cookies from "./routes/docs/03-cookies.tsx";
 import * as $index from "./routes/index.tsx";
+import * as $model_Data from "./routes/model/Data.ts";
+import * as $model_User from "./routes/model/User.ts";
 import * as $MyIsland from "./islands/MyIsland.tsx";
 import * as $SessionCountdown from "./islands/SessionCountdown.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
-    "./routes/Data.tsx": $Data,
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
-    "./routes/api/login.ts": $api_login,
-    "./routes/api/logout.ts": $api_logout,
-    "./routes/api/types/User.ts": $api_types_User,
     "./routes/bcrypt/forgot-password/index.tsx": $bcrypt_forgot_password_index,
     "./routes/bcrypt/forgot-password/reset/[token].tsx":
       $bcrypt_forgot_password_reset_token_,
@@ -41,6 +35,8 @@ const manifest = {
     "./routes/docs/02-sessions.tsx": $docs_02_sessions,
     "./routes/docs/03-cookies.tsx": $docs_03_cookies,
     "./routes/index.tsx": $index,
+    "./routes/model/Data.ts": $model_Data,
+    "./routes/model/User.ts": $model_User,
   },
   islands: {
     "./islands/MyIsland.tsx": $MyIsland,

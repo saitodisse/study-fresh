@@ -1,6 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { PasswordReset } from "../../types/PasswordReset.tsx";
-import { User } from "../api/types/User.ts";
+import { User } from "../model/User.ts";
 
 interface HandlerData {
   users: User[];
