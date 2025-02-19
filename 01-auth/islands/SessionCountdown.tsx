@@ -1,51 +1,55 @@
 // islands/SessionCountdown.tsx
-import { useSignal } from "@preact/signals";
-import { useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 
 interface SessionCountdownProps {
-  exp: number;
+  exp: number; // expiration timestamp in milliseconds
 }
 
+const formatTime = (milliseconds: number) => {
+  if (milliseconds <= 0) return "Expired";
+  const totalSeconds = Math.ceil(milliseconds / 1000); // Use ceil instead of floor for smoother transition
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+};
+
 export default function SessionCountdown(props: SessionCountdownProps) {
-  const timeLeft = useSignal(props.exp - Date.now());
+  // If not in the browser, render a static version to avoid hydration issues
+  if (!IS_BROWSER) {
+    return (
+      <div class="text-center mt-2">
+        <p class="text-lg font-semibold">
+          Session expires in: {formatTime(props.exp - Date.now())}
+        </p>
+      </div>
+    );
+  }
+
+  const [timeLeft, setTimeLeft] = useState<number>(props.exp - Date.now());
 
   useEffect(() => {
-    // Initial calculation
-    const initialTimeLeft = Math.max(0, props.exp - Date.now());
-    timeLeft.value = initialTimeLeft;
-
-    if (initialTimeLeft <= 0) return;
-
-    const timer = setInterval(() => {
+    const updateTime = () => {
       const remaining = Math.max(0, props.exp - Date.now());
-      timeLeft.value = remaining;
-
+      setTimeLeft(remaining);
       if (remaining <= 0) {
-        clearInterval(timer);
         window.location.href = "/api/logout";
       }
-    }, 100);
+    };
 
+    updateTime(); // Initial update
+
+    if (props.exp - Date.now() <= 0) return;
+
+    const timer = setInterval(updateTime, 100);
     return () => clearInterval(timer);
   }, [props.exp]);
 
-  const formatTime = (milliseconds: number) => {
-    if (milliseconds <= 0) return "Expired";
-    const totalSeconds = Math.ceil(milliseconds / 1000);
-    const minutes = Math.floor(totalSeconds / 60);
-    const seconds = totalSeconds % 60;
-    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-  };
-
   return (
     <div class="text-center mt-2">
-      <p
-        class={`text-lg font-semibold ${
-          timeLeft.value <= 0 ? "text-red-500" : ""
-        }`}
-      >
-        Session {timeLeft.value > 0 ? "expires in: " : ""}
-        {formatTime(timeLeft.value)}
+      <p class={`text-lg font-semibold ${timeLeft <= 0 ? "text-red-500" : ""}`}>
+        Session {timeLeft > 0 ? "expires in: " : ""}
+        {formatTime(timeLeft)}
       </p>
     </div>
   );

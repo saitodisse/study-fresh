@@ -18,6 +18,7 @@ import * as $docs_01_understanding_auth from "./routes/docs/01-understanding-aut
 import * as $docs_02_sessions from "./routes/docs/02-sessions.tsx";
 import * as $docs_03_cookies from "./routes/docs/03-cookies.tsx";
 import * as $index from "./routes/index.tsx";
+import * as $MyIsland from "./islands/MyIsland.tsx";
 import * as $SessionCountdown from "./islands/SessionCountdown.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -42,6 +43,7 @@ const manifest = {
     "./routes/index.tsx": $index,
   },
   islands: {
+    "./islands/MyIsland.tsx": $MyIsland,
     "./islands/SessionCountdown.tsx": $SessionCountdown,
   },
   baseUrl: import.meta.url,
