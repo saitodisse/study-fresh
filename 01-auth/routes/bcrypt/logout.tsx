@@ -27,10 +27,16 @@ export const handler: Handlers = {
       }
     }
 
-    // Clear cookies
-    deleteCookie(headers, "username");
-    deleteCookie(headers, "auth");
-    deleteCookie(headers, "exp");
+    // Delete cookies
+    deleteCookie(headers, "auth", {
+      path: "/",
+    });
+    deleteCookie(headers, "exp", {
+      path: "/",
+    });
+    deleteCookie(headers, "username", {
+      path: "/",
+    });
 
     headers.set("location", "/bcrypt/login");
     return new Response(null, { status: 302, headers });
